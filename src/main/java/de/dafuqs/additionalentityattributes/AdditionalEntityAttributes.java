@@ -27,9 +27,9 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	/**
 	 * Increases or decreases (negative values) the speed of the player when in water
 	 * The max value will make players zoom through the water much faster than an elytra ever could
-	 * For the sake of maneuverability and server performance it is capped at 1.0
+	 * For the sake of maneuverability and server performance it is capped at 0.5. Stacks with depth strider, albeit it has little felt effect at higher speeds
 	 */
-	public static final EntityAttribute WATER_SPEED = createAttribute("water_speed", 0.0, 0.0, 1.0);
+	public static final EntityAttribute WATER_SPEED = createAttribute("water_speed", 0.0, 0.0, 0.5);
 	
 	/**
 	 * Increases or decreases (negative values) the vision of the player when in water by adjusting the fog distance

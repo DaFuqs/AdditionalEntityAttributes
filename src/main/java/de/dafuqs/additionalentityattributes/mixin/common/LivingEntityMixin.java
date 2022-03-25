@@ -9,7 +9,6 @@ import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.tag.Tag;
-import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -26,13 +25,13 @@ public abstract class LivingEntityMixin {
 		info.getReturnValue().add(AdditionalEntityAttributes.CRITICAL_DAMAGE_MULTIPLIER);
 	}
 	
-	@Redirect(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;updateVelocity(FLnet/minecraft/util/math/Vec3d;)V", ordinal = 0))
-	public void modifySwimSpeed(LivingEntity livingEntity, float speedMultiplier, Vec3d movementInput) {
+	@ModifyArg(method = "travel(Lnet/minecraft/util/math/Vec3d;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;updateVelocity(FLnet/minecraft/util/math/Vec3d;)V"))
+	public float waterSpeed(float original) {
 		EntityAttributeInstance waterSpeed = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.WATER_SPEED);
 		if(waterSpeed == null) {
-			livingEntity.updateVelocity(speedMultiplier, movementInput);
+			return original;
 		} else {
-			livingEntity.updateVelocity(speedMultiplier + (float) waterSpeed.getValue(), movementInput);
+			return Math.max(0.01F, original + (float) waterSpeed.getValue());
 		}
 	}
 	
