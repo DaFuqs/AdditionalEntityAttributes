@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "additionalentityattributes",
+  "version": "${version}",
+  "name": "Additionalentityattributes",
+  "description": "Additional Entity Attributes",
+  "authors": [
+    "DaFuqs"
+  ],
+  "contact": {
+    "website": "https://github.com/DaFuqs/AdditionalEntityAttributes",
+    "repo": "https://github.com/DaFuqs/AdditionalEntityAttributes"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "de.dafuqs.additionalentityattributes.AdditionalEntityAttributes"
+    ]
+  },
+  "mixins": [
+    "additionalentityattributes.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "fabric": "*",
+    "minecraft": "1.18.1"
+  }
+}
