@@ -15,6 +15,7 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	 * /attribute Player662 additionalentityattributes:critical_damage_multiplier base get
 	 * /attribute Player583 additionalentityattributes:lava_visibility base set 10
 	 * /attribute Player583 additionalentityattributes:lava_speed base set 0.5
+	 * /attribute Player556 additionalentityattributes:water_speed base set 0.5
 	 */
 	
 	/**
@@ -27,9 +28,10 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	/**
 	 * Increases or decreases (negative values) the speed of the player when in water
 	 * The max value will make players zoom through the water much faster than an elytra ever could
-	 * For the sake of maneuverability and server performance it is capped at 0.5. Stacks with depth strider, albeit it has little felt effect at higher speeds
+	 * For the sake of maneuverability and server performance it is capped at 0.5. Values >0.1 feel a bit silly already.
+	 * Stacks with dolphins grace and depth strider, albeit the latter has little felt effect at higher speeds
 	 */
-	public static final EntityAttribute WATER_SPEED = createAttribute("water_speed", 0.0, 0.0, 0.5);
+	public static final EntityAttribute WATER_SPEED = createAttribute("water_speed", 0.0, -1.0, 0.5);
 	
 	/**
 	 * Increases or decreases (negative values) the vision of the player when in water by adjusting the fog distance

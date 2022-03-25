@@ -42,7 +42,7 @@ public abstract class LivingEntityMixin {
 			if(waterSpeed == null) {
 				return original;
 			} else {
-				return original + waterSpeed.getValue();
+				return Math.max(0.01, original + waterSpeed.getValue());
 			}
 		} else {
 			return original;
@@ -56,7 +56,7 @@ public abstract class LivingEntityMixin {
 		if(waterSpeed == null) {
 			return original;
 		} else {
-			return original + waterSpeed.getValue();
+			return Math.min(-0.01, original - waterSpeed.getValue());
 		}
 	}
 	
