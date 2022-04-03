@@ -8,7 +8,7 @@ import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.tag.FluidTags;
-import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -36,7 +36,7 @@ public abstract class LivingEntityMixin {
 	}
 	
 	@ModifyConstant(method = "swimUpward", constant = @Constant(doubleValue = 0.03999999910593033D))
-	public double modifyUpwardSwimming(double original, Tag<Fluid> fluid) {
+	public double modifyUpwardSwimming(double original, TagKey<Fluid> fluid) {
 		if(fluid == FluidTags.WATER) {
 			EntityAttributeInstance waterSpeed = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.WATER_SPEED);
 			if(waterSpeed == null) {
