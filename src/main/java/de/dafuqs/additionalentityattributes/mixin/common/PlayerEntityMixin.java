@@ -12,15 +12,15 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 public class PlayerEntityMixin {
 	
 	/**
-	 * By default, the additional crit damage is a flat *1.5
+	 * By default, the additional crit damage is a 50% bonus
 	 */
 	@ModifyConstant(method = "attack(Lnet/minecraft/entity/Entity;)V", constant = @Constant(floatValue = 1.5F))
 	public float applyCriticalDamageMultiplierAttribute(float original) {
-		EntityAttributeInstance criticalDamageMultiplier = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.CRITICAL_DAMAGE_MULTIPLIER);
+		EntityAttributeInstance criticalDamageMultiplier = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE);
 		if(criticalDamageMultiplier == null) {
 			return original;
 		} else {
-			return original + (float) criticalDamageMultiplier.getValue();
+			return 1 + (float) criticalDamageMultiplier.getValue();
 		}
 	}
 
