@@ -22,16 +22,19 @@ public abstract class LivingEntityMixin {
 		info.getReturnValue().add(AdditionalEntityAttributes.WATER_SPEED);
 		info.getReturnValue().add(AdditionalEntityAttributes.LAVA_VISIBILITY);
 		info.getReturnValue().add(AdditionalEntityAttributes.LAVA_SPEED);
-		info.getReturnValue().add(AdditionalEntityAttributes.CRITICAL_DAMAGE_MULTIPLIER);
+		info.getReturnValue().add(AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE);
 	}
 	
-	@ModifyArg(method = "travel(Lnet/minecraft/util/math/Vec3d;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;updateVelocity(FLnet/minecraft/util/math/Vec3d;)V"))
+	@ModifyArg(method = "travel(Lnet/minecraft/util/math/Vec3d;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;updateVelocity(FLnet/minecraft/util/math/Vec3d;)V", ordinal = 0))
 	public float waterSpeed(float original) {
 		EntityAttributeInstance waterSpeed = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.WATER_SPEED);
 		if(waterSpeed == null) {
 			return original;
 		} else {
-			return Math.max(0.01F, original + (float) waterSpeed.getValue());
+			if(waterSpeed.getBaseValue() != original) {
+				waterSpeed.setBaseValue(original);
+			}
+			return (float) waterSpeed.getValue();
 		}
 	}
 	
@@ -42,7 +45,10 @@ public abstract class LivingEntityMixin {
 			if(waterSpeed == null) {
 				return original;
 			} else {
-				return Math.max(0.01, original + waterSpeed.getValue());
+				if(waterSpeed.getBaseValue() != original) {
+					waterSpeed.setBaseValue(original);
+				}
+				return waterSpeed.getValue();
 			}
 		} else {
 			return original;
@@ -56,7 +62,10 @@ public abstract class LivingEntityMixin {
 		if(waterSpeed == null) {
 			return original;
 		} else {
-			return Math.min(-0.01, original - waterSpeed.getValue());
+			if(waterSpeed.getBaseValue() != -original) {
+				waterSpeed.setBaseValue(-original);
+			}
+			return -waterSpeed.getValue();
 		}
 	}
 	
@@ -66,7 +75,10 @@ public abstract class LivingEntityMixin {
 		if(lavaSpeed == null) {
 			return original;
 		} else {
-			return original + lavaSpeed.getValue();
+			if(lavaSpeed.getBaseValue() != original) {
+				lavaSpeed.setBaseValue(original);
+			}
+			return lavaSpeed.getValue();
 		}
 	}
 }

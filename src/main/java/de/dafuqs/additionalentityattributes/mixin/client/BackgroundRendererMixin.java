@@ -12,12 +12,15 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 @Mixin(BackgroundRenderer.class)
 public abstract class BackgroundRendererMixin {
 	
-	@ModifyConstant(method = "applyFog", constant = @Constant(floatValue = 0.25F, ordinal = 1))
+	@ModifyConstant(method = "applyFog", constant = @Constant(floatValue = 0.25F, ordinal = 0))
 	private static float modifyLavaVisibilityMinWithoutFireResistance(float original, Camera camera) {
 		EntityAttributeInstance lavaVisibilityAttribute = MinecraftClient.getInstance().player.getAttributeInstance(AdditionalEntityAttributes.LAVA_VISIBILITY);
 		if(lavaVisibilityAttribute == null) {
 			return original;
 		} else {
+			if(lavaVisibilityAttribute.getBaseValue() != original) {
+				lavaVisibilityAttribute.setBaseValue(original);
+			}
 			return original - (float) lavaVisibilityAttribute.getValue() * 0.25F;
 		}
 	}
@@ -28,7 +31,10 @@ public abstract class BackgroundRendererMixin {
 		if(lavaVisibilityAttribute == null) {
 			return original;
 		} else {
-			return original + (float) lavaVisibilityAttribute.getValue();
+			if(lavaVisibilityAttribute.getBaseValue() != original) {
+				lavaVisibilityAttribute.setBaseValue(original);
+			}
+			return (float) lavaVisibilityAttribute.getValue();
 		}
 	}
 	
@@ -38,6 +44,9 @@ public abstract class BackgroundRendererMixin {
 		if(lavaVisibilityAttribute == null) {
 			return original;
 		} else {
+			if(lavaVisibilityAttribute.getBaseValue() != original) {
+				lavaVisibilityAttribute.setBaseValue(original);
+			}
 			return original - (float) lavaVisibilityAttribute.getValue();
 		}
 	}
@@ -48,17 +57,23 @@ public abstract class BackgroundRendererMixin {
 		if(lavaVisibilityAttribute == null) {
 			return original;
 		} else {
-			return original + (float) lavaVisibilityAttribute.getValue() * 3.0F;
+			if(lavaVisibilityAttribute.getBaseValue() != original) {
+				lavaVisibilityAttribute.setBaseValue(original);
+			}
+			return (float) lavaVisibilityAttribute.getValue();
 		}
 	}
 	
-	@ModifyConstant(method = "applyFog", constant = @Constant(floatValue = 0.5F, ordinal = 0))
+	@ModifyConstant(method = "applyFog", constant = @Constant(floatValue = 96F, ordinal = 0))
 	private static float modifyWaterVisibility(float original, Camera camera) {
 		EntityAttributeInstance waterVisibilityAttribute = MinecraftClient.getInstance().player.getAttributeInstance(AdditionalEntityAttributes.WATER_VISIBILITY);
 		if(waterVisibilityAttribute == null) {
 			return original;
 		} else {
-			return original + (float) waterVisibilityAttribute.getValue();
+			if(waterVisibilityAttribute.getBaseValue() != original) {
+				waterVisibilityAttribute.setBaseValue(original);
+			}
+			return (float) waterVisibilityAttribute.getValue();
 		}
 	}
 	
