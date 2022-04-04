@@ -11,11 +11,12 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	public static final String MOD_ID = "additionalentityattributes";
 	
 	/**
-	 * for testing, default vanilla commands can be used:
-	 * /attribute Player662 additionalentityattributes:critical_bonuse_damage base get
-	 * /attribute Player583 additionalentityattributes:lava_visibility base set 10
-	 * /attribute Player583 additionalentityattributes:lava_speed base set 0.5
-	 * /attribute Player556 additionalentityattributes:water_speed base set 0.5
+	 * For testing, default vanilla commands can be used:
+	 * /attribute @s additionalentityattributes:critical_bonus_damage modifier add 135e1f1e-755d-4cfe-82da-3648626eeba2 test 1 multiply_base
+	 * /attribute @s additionalentityattributes:lava_visibility modifier add 135e1f1e-755d-4cfe-82da-3648626eeba2 test 10 add
+	 * /attribute @s additionalentityattributes:lava_speed modifier add 135e1f1e-755d-4cfe-82da-3648626eeba2 test -1 multiply
+	 * /attribute @s additionalentityattributes:water_speed modifier add 135e1f1e-755d-4cfe-82da-3648626eeba2 test 0.5 multiply_base
+	 * /attribute @s additionalentityattributes:water_visibility modifier add 135e1f1e-755d-4cfe-82da-3648626eeba2 test -0.5 multiply
 	 */
 	
 	/**
