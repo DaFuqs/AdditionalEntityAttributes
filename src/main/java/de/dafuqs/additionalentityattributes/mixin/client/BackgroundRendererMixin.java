@@ -64,7 +64,7 @@ public abstract class BackgroundRendererMixin {
 		}
 	}
 	
-	@ModifyConstant(method = "applyFog", constant = @Constant(floatValue = 96F, ordinal = 0))
+	@ModifyConstant(method = "applyFog", constant = @Constant(floatValue = 192F, ordinal = 0))
 	private static float modifyWaterVisibility(float original, Camera camera) {
 		EntityAttributeInstance waterVisibilityAttribute = MinecraftClient.getInstance().player.getAttributeInstance(AdditionalEntityAttributes.WATER_VISIBILITY);
 		if(waterVisibilityAttribute == null) {
