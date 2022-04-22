@@ -54,6 +54,11 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	 * Controls the vision of the player when in lava by adjusting the fog distance
 	 */
 	public static final EntityAttribute LAVA_VISIBILITY = createAttribute("lava_visibility", 1.0, 0, 1024.0);
+
+	/* 
+		Controls the dig speed of the player
+	*/
+	public static final EntityAttribute DIG_SPEED = createAttribute("generic.dig_speed", 0.0D, 0.0D, 2048.0D);
 	
 	@Override
 	public void onInitialize() {
@@ -62,6 +67,7 @@ public class AdditionalEntityAttributes implements ModInitializer {
 		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "water_visibility"), WATER_VISIBILITY);
 		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "lava_speed"), LAVA_SPEED);
 		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "lava_visibility"), LAVA_VISIBILITY);
+        Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "dig_speed"), DIG_SPEED);
 	}
 	
 	private static EntityAttribute createAttribute(final String name, double base, double min, double max) {
