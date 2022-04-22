@@ -23,7 +23,8 @@ public abstract class LivingEntityMixin {
 		info.getReturnValue().add(AdditionalEntityAttributes.LAVA_VISIBILITY);
 		info.getReturnValue().add(AdditionalEntityAttributes.LAVA_SPEED);
 		info.getReturnValue().add(AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE);
-	}
+        info.getReturnValue().add(AdditionalEntityAttributes.DIG_SPEED);
+    }
 	
 	@ModifyArg(method = "travel(Lnet/minecraft/util/math/Vec3d;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;updateVelocity(FLnet/minecraft/util/math/Vec3d;)V", ordinal = 0))
 	public float waterSpeed(float original) {
