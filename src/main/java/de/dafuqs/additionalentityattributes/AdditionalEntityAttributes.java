@@ -11,7 +11,7 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	
 	public static final String MOD_ID = "additionalentityattributes";
 	
-	/**
+	/*
 	 * For testing, default vanilla commands can be used:
 	 * /attribute @s additionalentityattributes:critical_bonus_damage modifier add 135e1f1e-755d-4cfe-82da-3648626eeba2 test 1 multiply_base
 	 * /attribute @s additionalentityattributes:lava_visibility modifier add 135e1f1e-755d-4cfe-82da-3648626eeba2 test 10 add
@@ -75,10 +75,15 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	
 	/**
 	 * Modifies the experience dropped from mining blocks and killing mobs.
-	 * The default of 1.0 equals the vanilla drop amount, 0.0 will result in no xp drops altogether
+	 * The default of 1.0 equals the vanilla drop amount, 0.0 will result in no xp drops altogether.
 	 */
 	public static final EntityAttribute DROPPED_EXPERIENCE = createAttribute("player.dropped_experience", 1.0D, 0.0D, 1024.0D);
-	
+
+	/**
+	 * Reduces the amount of magic damage taken.
+	 * By default, the player has 0 points, and each point of reduces the damage taken by 1.
+	 */
+	public static final EntityAttribute MAGIC_PROTECTION = createAttribute("player.magic_protection", 0.0D, 0.0D, 1024.0D);
 	@Override
 	public void onInitialize() {
 		Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, "critical_bonus_damage"), CRITICAL_BONUS_DAMAGE);
@@ -90,6 +95,7 @@ public class AdditionalEntityAttributes implements ModInitializer {
 		Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, "bonus_rare_loot_rolls"), BONUS_RARE_LOOT_ROLLS);
 		Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, "bonus_loot_count_rolls"), BONUS_LOOT_COUNT_ROLLS);
         Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, "dropped_experience"), DROPPED_EXPERIENCE);
+        Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, "magic_protection"), MAGIC_PROTECTION);
 	}
 	
 	private static EntityAttribute createAttribute(final String name, double base, double min, double max) {
