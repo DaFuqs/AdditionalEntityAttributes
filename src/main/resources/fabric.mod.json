@@ -19,6 +19,7 @@
       "de.dafuqs.additionalentityattributes.AdditionalEntityAttributes"
     ]
   },
+  "accessWidener": "additionalentityattributes.accesswidener",
   "mixins": [
     "additionalentityattributes.mixins.json"
   ],
