@@ -4,8 +4,12 @@
   "package": "de.dafuqs.additionalentityattributes.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "common.ApplyBonusLootFunctionMixin",
+    "common.BlockMixin",
+    "common.LivingEntityMixin",
     "common.PlayerEntityMixin",
-    "common.LivingEntityMixin"
+    "common.RandomChanceLootConditionMixin",
+    "common.RandomChanceWithLootingLootConditionMixin"
   ],
   "client": [
     "client.BackgroundRendererMixin"
