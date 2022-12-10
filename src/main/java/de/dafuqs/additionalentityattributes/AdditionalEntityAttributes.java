@@ -3,8 +3,9 @@ package de.dafuqs.additionalentityattributes;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.entity.attribute.ClampedEntityAttribute;
 import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class AdditionalEntityAttributes implements ModInitializer {
 	
@@ -62,12 +63,12 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	
 	@Override
 	public void onInitialize() {
-		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "critical_bonus_damage"), CRITICAL_BONUS_DAMAGE);
-		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "water_speed"), WATER_SPEED);
-		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "water_visibility"), WATER_VISIBILITY);
-		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "lava_speed"), LAVA_SPEED);
-		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "lava_visibility"), LAVA_VISIBILITY);
-        Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "dig_speed"), DIG_SPEED);
+		Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, "critical_bonus_damage"), CRITICAL_BONUS_DAMAGE);
+		Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, "water_speed"), WATER_SPEED);
+		Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, "water_visibility"), WATER_VISIBILITY);
+		Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, "lava_speed"), LAVA_SPEED);
+		Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, "lava_visibility"), LAVA_VISIBILITY);
+        Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, "dig_speed"), DIG_SPEED);
 	}
 	
 	private static EntityAttribute createAttribute(final String name, double base, double min, double max) {
