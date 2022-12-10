@@ -83,6 +83,7 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	 * By default, the player has 0 points, and each point of reduces the damage taken by 1.
 	 */
 	public static final EntityAttribute MAGIC_PROTECTION = createAttribute("player.magic_protection", 0.0D, 0.0D, 1024.0D);
+	
 	@Override
 	public void onInitialize() {
 		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "critical_bonus_damage"), CRITICAL_BONUS_DAMAGE);
