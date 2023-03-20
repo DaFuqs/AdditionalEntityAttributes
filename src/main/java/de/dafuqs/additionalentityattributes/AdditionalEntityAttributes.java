@@ -1,8 +1,7 @@
 package de.dafuqs.additionalentityattributes;
 
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.entity.attribute.ClampedEntityAttribute;
-import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.attribute.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -87,16 +86,20 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	
 	@Override
 	public void onInitialize() {
-		Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, "critical_bonus_damage"), CRITICAL_BONUS_DAMAGE);
-		Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, "water_speed"), WATER_SPEED);
-		Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, "water_visibility"), WATER_VISIBILITY);
-		Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, "lava_speed"), LAVA_SPEED);
-		Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, "lava_visibility"), LAVA_VISIBILITY);
-        Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, "dig_speed"), DIG_SPEED);
-		Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, "bonus_rare_loot_rolls"), BONUS_RARE_LOOT_ROLLS);
-		Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, "bonus_loot_count_rolls"), BONUS_LOOT_COUNT_ROLLS);
-        Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, "dropped_experience"), DROPPED_EXPERIENCE);
-        Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, "magic_protection"), MAGIC_PROTECTION);
+		register("critical_bonus_damage", CRITICAL_BONUS_DAMAGE);
+		register("water_speed", WATER_SPEED);
+		register("water_visibility", WATER_VISIBILITY);
+		register("lava_speed", LAVA_SPEED);
+		register("lava_visibility", LAVA_VISIBILITY);
+        register("dig_speed", DIG_SPEED);
+		register("bonus_rare_loot_rolls", BONUS_RARE_LOOT_ROLLS);
+		register("bonus_loot_count_rolls", BONUS_LOOT_COUNT_ROLLS);
+        register("dropped_experience", DROPPED_EXPERIENCE);
+        register("magic_protection", MAGIC_PROTECTION);
+	}
+	
+	private static EntityAttribute register(String id, EntityAttribute attribute) {
+		return Registry.register(Registries.ATTRIBUTE, new Identifier(MOD_ID, id), attribute);
 	}
 	
 	private static EntityAttribute createAttribute(final String name, double base, double min, double max) {
