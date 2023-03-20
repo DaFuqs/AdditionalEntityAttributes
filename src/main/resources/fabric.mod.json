@@ -12,6 +12,7 @@
     "website": "https://github.com/DaFuqs/AdditionalEntityAttributes",
     "repo": "https://github.com/DaFuqs/AdditionalEntityAttributes"
   },
+  "icon": "assets/additionalentityattributes/icon.png",
   "license": "MIT",
   "environment": "*",
   "entrypoints": {
