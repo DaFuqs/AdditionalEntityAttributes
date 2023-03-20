@@ -68,7 +68,8 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	public static final EntityAttribute BONUS_LOOT_COUNT_ROLLS = createAttribute("generic.bonus_loot_count_rolls", 0.0D, 0.0D, 128.0);
 
 	/**
-	 *
+	 * Number of rerolls when chance based loot tables are rolled
+	 * Each full +1 on this stat will roll the bonus count another time. Highest one is kept.
 	 */
 	public static final EntityAttribute BONUS_RARE_LOOT_ROLLS = createAttribute("generic.bonus_rare_loot_rolls", 0.0D, 0.0D, 128.0);
 	
