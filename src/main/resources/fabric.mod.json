@@ -6,7 +6,8 @@
   "description": "Additional Entity Attributes",
   "authors": [
     "DaFuqs",
-    "Apace100"
+    "Apace100",
+    "Noaaan"
   ],
   "contact": {
     "website": "https://github.com/DaFuqs/AdditionalEntityAttributes",
@@ -25,8 +26,8 @@
     "additionalentityattributes.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.11",
+    "fabricloader": "*",
     "fabric": "*",
-    "minecraft": ">=1.19.3"
+    "minecraft": ">=1.19.4"
   }
 }
