@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "additionalentityattributes",
   "version": "${version}",
-  "name": "Additionalentityattributes",
+  "name": "Additional Entity Attributes",
   "description": "Additional Entity Attributes",
   "authors": [
     "DaFuqs",
