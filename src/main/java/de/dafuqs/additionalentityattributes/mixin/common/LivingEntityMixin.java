@@ -104,7 +104,7 @@ public abstract class LivingEntityMixin {
         }
     }
 
-    @ModifyVariable(method = "applyArmorToDamage", at = @At("HEAD"), argsOnly = true)
+    @ModifyVariable(method = "modifyAppliedDamage", at = @At(value = "LOAD", ordinal = 4), argsOnly = true)
     private float additionalEntityAttributes$reduceMagicDamage(float damage, DamageSource source) {
         EntityAttributeInstance magicProt = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.MAGIC_PROTECTION);
 
