@@ -1,10 +1,9 @@
 package de.dafuqs.additionalentityattributes;
 
-import net.fabricmc.api.ModInitializer;
+import net.fabricmc.api.*;
 import net.minecraft.entity.attribute.*;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
+import net.minecraft.registry.*;
+import net.minecraft.util.*;
 
 public class AdditionalEntityAttributes implements ModInitializer {
 	
@@ -41,6 +40,11 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	 * Controls the vision of the player when in water by adjusting the fog distance
 	 */
 	public static final EntityAttribute WATER_VISIBILITY = createAttribute("water_visibility", 96.0, 0, 1024.0);
+
+	/**
+	 * Controls the maximum amount of air the player can have
+	 */
+	public static final EntityAttribute MAX_AIR = createAttribute("max_air", 4000.0, 0, 10000);
 	
 	/**
 	 * Controls the speed of the player when in lava
@@ -90,6 +94,7 @@ public class AdditionalEntityAttributes implements ModInitializer {
 		register("critical_bonus_damage", CRITICAL_BONUS_DAMAGE);
 		register("water_speed", WATER_SPEED);
 		register("water_visibility", WATER_VISIBILITY);
+		register("max_air", MAX_AIR);
 		register("lava_speed", LAVA_SPEED);
 		register("lava_visibility", LAVA_VISIBILITY);
         register("dig_speed", DIG_SPEED);
