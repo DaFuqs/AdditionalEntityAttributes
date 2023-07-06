@@ -6,6 +6,7 @@
   "mixins": [
     "common.ApplyBonusLootFunctionMixin",
     "common.BlockMixin",
+    "common.EntityMixin",
     "common.LivingEntityMixin",
     "common.PlayerEntityMixin",
     "common.RandomChanceLootConditionMixin",

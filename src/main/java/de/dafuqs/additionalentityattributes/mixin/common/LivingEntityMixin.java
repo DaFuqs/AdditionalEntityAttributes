@@ -8,22 +8,17 @@ import net.minecraft.entity.damage.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.fluid.*;
 import net.minecraft.registry.tag.*;
-import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin extends Entity {
+public abstract class LivingEntityMixin {
 
     @Shadow
     @Nullable
     protected PlayerEntity attackingPlayer;
-
-    public LivingEntityMixin(EntityType<?> type, World world) {
-        super(type, world);
-    }
 
     @Inject(method = "createLivingAttributes()Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;", require = 1, allow = 1, at = @At("RETURN"))
     private static void additionalEntityAttributes$addAttributes(final CallbackInfoReturnable<DefaultAttributeContainer.Builder> info) {
@@ -49,21 +44,6 @@ public abstract class LivingEntityMixin extends Entity {
                 waterSpeed.setBaseValue(original);
             }
             return (float) waterSpeed.getValue();
-        }
-    }
-
-    @Override
-    public int getMaxAir() {
-        int original = super.getMaxAir();
-        try {
-            EntityAttributeInstance maxAir = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.MAX_AIR);
-            if (maxAir == null) {
-                return original;
-            } else {
-                return (int) maxAir.getValue();
-            }
-        } catch (Exception e) {
-            return original;
         }
     }
 
@@ -133,5 +113,4 @@ public abstract class LivingEntityMixin extends Entity {
         }
         return damage;
     }
-
 }
