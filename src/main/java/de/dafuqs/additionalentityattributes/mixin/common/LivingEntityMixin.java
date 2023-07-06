@@ -4,6 +4,8 @@ import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
 import de.dafuqs.additionalentityattributes.Support;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
@@ -12,6 +14,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.tag.TagKey;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -19,16 +22,21 @@ import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin {
+public abstract class LivingEntityMixin extends Entity {
 
     @Shadow
     @Nullable
     protected PlayerEntity attackingPlayer;
 
+    public LivingEntityMixin(EntityType<?> type, World world) {
+        super(type, world);
+    }
+
     @Inject(method = "createLivingAttributes()Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;", require = 1, allow = 1, at = @At("RETURN"))
     private static void additionalEntityAttributes$addAttributes(final CallbackInfoReturnable<DefaultAttributeContainer.Builder> info) {
         info.getReturnValue().add(AdditionalEntityAttributes.WATER_VISIBILITY);
         info.getReturnValue().add(AdditionalEntityAttributes.WATER_SPEED);
+        info.getReturnValue().add(AdditionalEntityAttributes.MAX_AIR);
         info.getReturnValue().add(AdditionalEntityAttributes.LAVA_VISIBILITY);
         info.getReturnValue().add(AdditionalEntityAttributes.LAVA_SPEED);
         info.getReturnValue().add(AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE);
@@ -48,6 +56,21 @@ public abstract class LivingEntityMixin {
                 waterSpeed.setBaseValue(original);
             }
             return (float) waterSpeed.getValue();
+        }
+    }
+
+    @Override
+    public int getMaxAir() {
+        int original = super.getMaxAir();
+        try {
+            EntityAttributeInstance maxAir = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.MAX_AIR);
+            if (maxAir == null) {
+                return original;
+            } else {
+                return (int) maxAir.getValue();
+            }
+        } catch (Exception e) {
+            return original;
         }
     }
 

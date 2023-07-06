@@ -41,6 +41,11 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	 * Controls the vision of the player when in water by adjusting the fog distance
 	 */
 	public static final EntityAttribute WATER_VISIBILITY = createAttribute("water_visibility", 96.0, 0, 1024.0);
+
+	/**
+	 * Controls the maximum amount of air the player can have
+	 */
+	public static final EntityAttribute MAX_AIR = createAttribute("max_air", 4000.0, 0, 10000);
 	
 	/**
 	 * Controls the speed of the player when in lava
@@ -89,6 +94,7 @@ public class AdditionalEntityAttributes implements ModInitializer {
 		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "critical_bonus_damage"), CRITICAL_BONUS_DAMAGE);
 		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "water_speed"), WATER_SPEED);
 		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "water_visibility"), WATER_VISIBILITY);
+		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "max_air"), MAX_AIR);
 		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "lava_speed"), LAVA_SPEED);
 		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "lava_visibility"), LAVA_VISIBILITY);
         Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "dig_speed"), DIG_SPEED);
