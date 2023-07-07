@@ -25,6 +25,8 @@ dependencies {
     // while we do not use it as a dependency in a traditional sense,
     // fapi unfreezes the attributes registry while mods are initializing
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    include(implementation(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-fabric:0.2.0-beta.6")))
 }
 
 loom {
