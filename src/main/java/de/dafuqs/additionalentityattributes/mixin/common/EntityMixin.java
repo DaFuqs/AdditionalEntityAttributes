@@ -1,33 +1,29 @@
 package de.dafuqs.additionalentityattributes.mixin.common;
 
-import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttributeInstance;
-import net.minecraft.entity.passive.DolphinEntity;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import com.llamalad7.mixinextras.injector.*;
+import de.dafuqs.additionalentityattributes.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.util.math.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
 
 @Mixin(Entity.class)
-public class EntityMixin {
-    @Inject(method = "getMaxAir", at = @At("HEAD"), cancellable = true)
-    public void getMaxAir(CallbackInfoReturnable<Integer> cir) {
-        int original = 300;
+public abstract class EntityMixin {
+
+    @ModifyReturnValue(method = "getMaxAir", at = @At("RETURN"))
+    public int getMaxAir(int original) {
         if (!((Object) this instanceof LivingEntity livingEntity)) {
-            cir.setReturnValue(original);
+            return original;
         } else {
             if (livingEntity.getAttributes() == null) {
-                cir.setReturnValue(original);
-            } else {
-                EntityAttributeInstance maxAir = livingEntity.getAttributeInstance(AdditionalEntityAttributes.MAX_AIR);
-                if (maxAir == null) {
-                    cir.setReturnValue(original);
-                } else {
-                    cir.setReturnValue((int) maxAir.getValue());
-                }
+                return original;
+            }
+            EntityAttributeInstance maxAir = livingEntity.getAttributeInstance(AdditionalEntityAttributes.MAX_AIR);
+            if (maxAir != null) {
+                return MathHelper.clamp(original + (int) maxAir.getValue(), 1, Integer.MAX_VALUE);
             }
         }
+        return original;
     }
 }
