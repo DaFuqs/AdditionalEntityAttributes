@@ -17,6 +17,7 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	 * /attribute @s additionalentityattributes:lava_speed modifier add 135e1f1e-755d-4cfe-82da-3648626eeba2 test -1 multiply
 	 * /attribute @s additionalentityattributes:water_speed modifier add 135e1f1e-755d-4cfe-82da-3648626eeba2 test 0.5 multiply_base
 	 * /attribute @s additionalentityattributes:water_visibility modifier add 135e1f1e-755d-4cfe-82da-3648626eeba2 test -0.5 multiply
+	 * /attribute @s additionalentityattributes:water_visibility modifier add 135e1f1e-755d-4cfe-82da-3eeee26eeba2 test 300 add
 	 */
 	
 	/**
@@ -43,9 +44,9 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	public static final EntityAttribute WATER_VISIBILITY = createAttribute("water_visibility", 96.0, 0, 1024.0);
 
 	/**
-	 * Controls the maximum amount of air the player can have
+	 * Controls the maximum amount of air the player can have, measured in ticks
 	 */
-	public static final EntityAttribute MAX_AIR = createAttribute("max_air", 4000.0, 0, 10000);
+	public static final EntityAttribute MAX_AIR = createAttribute("max_air", 0.0, -40000, 40000);
 	
 	/**
 	 * Controls the speed of the player when in lava
