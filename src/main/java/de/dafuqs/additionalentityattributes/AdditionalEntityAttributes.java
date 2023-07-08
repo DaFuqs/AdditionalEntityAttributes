@@ -1,10 +1,9 @@
 package de.dafuqs.additionalentityattributes;
 
-import net.fabricmc.api.ModInitializer;
-import net.minecraft.entity.attribute.ClampedEntityAttribute;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.fabricmc.api.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.util.*;
+import net.minecraft.util.registry.*;
 
 public class AdditionalEntityAttributes implements ModInitializer {
 	
@@ -44,10 +43,10 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	public static final EntityAttribute WATER_VISIBILITY = createAttribute("water_visibility", 96.0, 0, 1024.0);
 
 	/**
-	 * Controls the maximum amount of air the player can have, measured in ticks
+	 * Controls the maximum amount of air the entity can have, measured in ticks
+	 * This value modifies the natural value of Entity.getMaxAir()
 	 */
-	public static final EntityAttribute MAX_AIR = createAttribute("max_air", 0.0, -40000, 40000);
-	
+	public static final EntityAttribute LUNG_CAPACITY = createAttribute("lung_capacity", 0.0, -40000, 40000);
 	/**
 	 * Controls the speed of the player when in lava
 	 * The base value of this attribute is always set dynamically, therefore setting it via a command will have no effect.
@@ -95,7 +94,7 @@ public class AdditionalEntityAttributes implements ModInitializer {
 		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "critical_bonus_damage"), CRITICAL_BONUS_DAMAGE);
 		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "water_speed"), WATER_SPEED);
 		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "water_visibility"), WATER_VISIBILITY);
-		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "max_air"), MAX_AIR);
+		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "lung_capacity"), LUNG_CAPACITY);
 		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "lava_speed"), LAVA_SPEED);
 		Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "lava_visibility"), LAVA_VISIBILITY);
         Registry.register(Registry.ATTRIBUTE, new Identifier(MOD_ID, "dig_speed"), DIG_SPEED);

@@ -1,22 +1,17 @@
 package de.dafuqs.additionalentityattributes.mixin.common;
 
-import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
-import de.dafuqs.additionalentityattributes.Support;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.DefaultAttributeContainer;
-import net.minecraft.entity.attribute.EntityAttributeInstance;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.tag.FluidTags;
-import net.minecraft.tag.TagKey;
-import org.jetbrains.annotations.Nullable;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
+import de.dafuqs.additionalentityattributes.*;
+import net.fabricmc.api.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.entity.damage.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.fluid.*;
+import net.minecraft.tag.*;
+import org.jetbrains.annotations.*;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
@@ -29,7 +24,7 @@ public abstract class LivingEntityMixin {
     private static void additionalEntityAttributes$addAttributes(final CallbackInfoReturnable<DefaultAttributeContainer.Builder> info) {
         info.getReturnValue().add(AdditionalEntityAttributes.WATER_VISIBILITY);
         info.getReturnValue().add(AdditionalEntityAttributes.WATER_SPEED);
-        info.getReturnValue().add(AdditionalEntityAttributes.MAX_AIR);
+        info.getReturnValue().add(AdditionalEntityAttributes.LUNG_CAPACITY);
         info.getReturnValue().add(AdditionalEntityAttributes.LAVA_VISIBILITY);
         info.getReturnValue().add(AdditionalEntityAttributes.LAVA_SPEED);
         info.getReturnValue().add(AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE);

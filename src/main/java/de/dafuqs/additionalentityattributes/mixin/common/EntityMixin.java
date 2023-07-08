@@ -19,9 +19,9 @@ public abstract class EntityMixin {
             if (livingEntity.getAttributes() == null) {
                 return original;
             }
-            EntityAttributeInstance maxAir = livingEntity.getAttributeInstance(AdditionalEntityAttributes.MAX_AIR);
-            if (maxAir != null) {
-                return MathHelper.clamp(original + (int) maxAir.getValue(), 1, Integer.MAX_VALUE);
+            EntityAttributeInstance lungCapacity = livingEntity.getAttributeInstance(AdditionalEntityAttributes.LUNG_CAPACITY);
+            if (lungCapacity != null) {
+                return MathHelper.clamp(original + (int) lungCapacity.getValue(), 1, Integer.MAX_VALUE);
             }
         }
         return original;
