@@ -29,6 +29,7 @@ public abstract class LivingEntityMixin {
     private static void additionalEntityAttributes$addAttributes(final CallbackInfoReturnable<DefaultAttributeContainer.Builder> info) {
         info.getReturnValue().add(AdditionalEntityAttributes.WATER_VISIBILITY);
         info.getReturnValue().add(AdditionalEntityAttributes.WATER_SPEED);
+        info.getReturnValue().add(AdditionalEntityAttributes.MAX_AIR);
         info.getReturnValue().add(AdditionalEntityAttributes.LAVA_VISIBILITY);
         info.getReturnValue().add(AdditionalEntityAttributes.LAVA_SPEED);
         info.getReturnValue().add(AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE);
@@ -117,5 +118,4 @@ public abstract class LivingEntityMixin {
         }
         return damage;
     }
-
 }
