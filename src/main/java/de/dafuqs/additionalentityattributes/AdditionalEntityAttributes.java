@@ -43,10 +43,10 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	public static final EntityAttribute WATER_VISIBILITY = createAttribute("water_visibility", 96.0, 0, 1024.0);
 
 	/**
-	 * Controls the maximum amount of air the player can have, measured in ticks
+	 * Controls the maximum amount of air the entity can have, measured in ticks
+	 * This value modifies the natural value of Entity.getMaxAir()
 	 */
-	public static final EntityAttribute MAX_AIR = createAttribute("max_air", 0.0, -40000, 40000);
-	
+	public static final EntityAttribute LUNG_CAPACITY = createAttribute("lung_capacity", 0.0, -40000, 40000);
 	/**
 	 * Controls the speed of the player when in lava
 	 * The base value of this attribute is always set dynamically, therefore setting it via a command will have no effect.
@@ -73,8 +73,7 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	public static final EntityAttribute BONUS_LOOT_COUNT_ROLLS = createAttribute("generic.bonus_loot_count_rolls", 0.0D, 0.0D, 128.0);
 
 	/**
-	 * Number of rerolls when chance based loot tables are rolled
-	 * Each full +1 on this stat will roll the bonus count another time. Highest one is kept.
+	 *
 	 */
 	public static final EntityAttribute BONUS_RARE_LOOT_ROLLS = createAttribute("generic.bonus_rare_loot_rolls", 0.0D, 0.0D, 128.0);
 	
@@ -95,7 +94,7 @@ public class AdditionalEntityAttributes implements ModInitializer {
 		register("critical_bonus_damage", CRITICAL_BONUS_DAMAGE);
 		register("water_speed", WATER_SPEED);
 		register("water_visibility", WATER_VISIBILITY);
-		register("max_air", MAX_AIR);
+		register("lung_capacity", LUNG_CAPACITY);
 		register("lava_speed", LAVA_SPEED);
 		register("lava_visibility", LAVA_VISIBILITY);
         register("dig_speed", DIG_SPEED);
