@@ -19,6 +19,9 @@
   "entrypoints": {
     "main": [
       "de.dafuqs.additionalentityattributes.AdditionalEntityAttributes"
+    ],
+    "preLaunch": [
+      "com.llamalad7.mixinextras.MixinExtrasBootstrap::init"
     ]
   },
   "accessWidener": "additionalentityattributes.accesswidener",
