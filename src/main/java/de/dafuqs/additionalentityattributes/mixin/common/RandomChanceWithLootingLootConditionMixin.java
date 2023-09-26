@@ -18,7 +18,7 @@ public abstract class RandomChanceWithLootingLootConditionMixin {
 	
 	@Shadow
 	@Final
-	float chance;
+	private float chance;
 	
 	@Inject(at = @At("RETURN"), method = "test(Lnet/minecraft/loot/context/LootContext;)Z", cancellable = true)
 	public void additionalEntityAttributes$applyBonusLoot(LootContext lootContext, CallbackInfoReturnable<Boolean> cir) {
