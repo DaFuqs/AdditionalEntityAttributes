@@ -15,11 +15,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(RandomChanceLootCondition.class)
 public abstract class RandomChanceLootConditionMixin {
-	
+
 	@Shadow
 	@Final
-	float chance;
-	
+	private float chance;
+
 	@Inject(at = @At("RETURN"), method = "test(Lnet/minecraft/loot/context/LootContext;)Z", cancellable = true)
 	public void additionalEntityAttributes$applyBonusLoot(LootContext lootContext, CallbackInfoReturnable<Boolean> cir) {
 		// if the result was to not drop a drop before reroll
