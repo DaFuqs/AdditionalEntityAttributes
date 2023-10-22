@@ -73,7 +73,14 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	public static final EntityAttribute BONUS_LOOT_COUNT_ROLLS = createAttribute("generic.bonus_loot_count_rolls", 0.0D, 0.0D, 128.0);
 
 	/**
+	 * If a loot table that does not have 100% chance (RandomChanceLootCondition, RandomChanceWithLootingLootCondition),
+	 * increases the chance to get that drop up to the point that drop is guaranteed. Will not increase drop count.
+	 * Example: Zombies have a ~1% chance to drop 1 Iron Ingot. BONUS_RARE_LOOT_ROLLS increases that 1% chance (but will not make it drop 2 ingots)
 	 *
+	 * A value of 1.0 will result in 1 additional roll with the original chance. So if a drop has a 10% chance:
+	 * - `BONUS_RARE_LOOT_ROLLS=1.0` will roll another time with 10% chance
+	 * - `BONUS_RARE_LOOT_ROLLS = 2.0` will result in another roll with 20% chance
+	 * - `BONUS_RARE_LOOT_ROLLS = 0.5` will result in another roll with 5% chance
 	 */
 	public static final EntityAttribute BONUS_RARE_LOOT_ROLLS = createAttribute("generic.bonus_rare_loot_rolls", 0.0D, 0.0D, 128.0);
 	
