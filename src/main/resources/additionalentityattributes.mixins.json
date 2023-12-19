@@ -13,7 +13,8 @@
     "common.PlayerEntityMixin",
     "common.RandomChanceLootConditionMixin",
     "common.RandomChanceWithLootingLootConditionMixin",
-    "common.SpiderEntityMixin"
+    "common.SpiderEntityMixin",
+    "common.TargetPredicateMixin"
   ],
   "client": [
     "client.BackgroundRendererMixin",

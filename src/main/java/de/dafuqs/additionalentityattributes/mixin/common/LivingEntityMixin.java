@@ -1,5 +1,6 @@
 package de.dafuqs.additionalentityattributes.mixin.common;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import de.dafuqs.additionalentityattributes.*;
 import net.fabricmc.api.*;
 import net.minecraft.entity.*;
@@ -38,6 +39,7 @@ public abstract class LivingEntityMixin {
         info.getReturnValue().add(AdditionalEntityAttributes.MODEL_SCALE);
         info.getReturnValue().add(AdditionalEntityAttributes.MODEL_WIDTH);
         info.getReturnValue().add(AdditionalEntityAttributes.MODEL_HEIGHT);
+        info.getReturnValue().add(AdditionalEntityAttributes.MOB_DETECTION);
         info.getReturnValue().add(AdditionalEntityAttributes.MAGIC_PROTECTION);
     }
 
@@ -105,5 +107,12 @@ public abstract class LivingEntityMixin {
         } else {
             return (int) (originalXP * Support.getExperienceMod(this.attackingPlayer));
         }
+    }
+
+    @ModifyReturnValue(method = "getAttackDistanceScalingFactor", at = @At("RETURN"))
+    private double additionalEntityAttributes$modifyVisibility(double original) {
+        LivingEntity thisAsLiving = (LivingEntity)(Object)this;
+        // We utilise the slight math here so developers can use mutlipliers.
+        return Support.getMobDetectionValue(thisAsLiving, original);
     }
 }

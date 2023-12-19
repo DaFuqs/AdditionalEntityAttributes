@@ -80,59 +80,73 @@ public class AdditionalEntityAttributes implements ModInitializer {
 
 	/**
 	 * Controls the player's width.
+	 * The default of 1.0 is an unmodified scale.
 	 * Stacks with vanilla's scale modifier and other AEA scale modifiers, but cannot go past
-	 * the min or max value of the original scale.
+	 * the min or max value of the original scale attribute.
 	 */
 	public static final RegistryEntry<EntityAttribute> WIDTH = createAttribute("width", "generic.width", 1.0, 0.0625, 16.0);
 
 	/**
 	 * Controls the player's height.
+	 * The default of 1.0 is an unmodified scale.
 	 * Stacks with vanilla's scale modifier and other AEA scale modifiers, but cannot go past
-	 * the min or max value of the original scale.
+	 * the min or max value of the original scale attribute.
 	 */
 	public static final RegistryEntry<EntityAttribute> HEIGHT = createAttribute("height", "generic.height", 1.0, 0.0625, 16.0);
 
 	/**
 	 * Controls the player's hitbox scale.
+	 * The default of 1.0 is an unmodified scale.
 	 * Stacks with vanilla's scale modifier and other AEA scale modifiers, but cannot go past
-	 * the min or max value of the original scale.
+	 * the min or max value of the original scale attribute.
 	 */
 	public static final RegistryEntry<EntityAttribute> HITBOX_SCALE = createAttribute("hitbox_scale", "generic.hitbox_scale", 1.0, 0.0625, 16.0);
 
 	/**
 	 * Controls the player's hitbox width.
+	 * The default of 1.0 is an unmodified scale.
 	 * Stacks with vanilla's scale modifier and other AEA scale modifiers, but cannot go past
-	 * the min or max value of the original scale.
+	 * the min or max value of the original scale attribute.
 	 */
 	public static final RegistryEntry<EntityAttribute> HITBOX_WIDTH = createAttribute("hitbox_width", "generic.hitbox_width", 1.0, 0.0625, 16.0);
 
 	/**
 	 * Controls the player's hitbox height.
+	 * The default of 1.0 is an unmodified scale.
 	 * Stacks with vanilla's scale modifier and other AEA scale modifiers, but cannot go past
-	 * the min or max value of the original scale.
+	 * the min or max value of the original scale attribute.
 	 */
 	public static final RegistryEntry<EntityAttribute> HITBOX_HEIGHT = createAttribute("hitbox_height", "generic.hitbox_height", 1.0, 0.0625, 16.0);
 
 	/**
 	 * Controls the player's model scale.
+	 * The default of 1.0 is an unmodified scale.
 	 * Stacks with vanilla's scale modifier and other AEA scale modifiers, but cannot go past
-	 * the min or max value of the original scale.
+	 * the min or max value of the original scale attribute.
 	 */
 	public static final RegistryEntry<EntityAttribute> MODEL_SCALE = createAttribute("model_scale", "generic.model_scale", 1.0, 0.0625, 16.0);
 
 	/**
 	 * Controls the player's model width.
+	 * The default of 1.0 is an unmodified scale.
 	 * Stacks with vanilla's scale modifier and other AEA scale modifiers, but cannot go past
-	 * the min or max value of the original scale.
+	 * the min or max value of the original scale attribute.
 	 */
 	public static final RegistryEntry<EntityAttribute> MODEL_WIDTH = createAttribute("model_width", "generic.model_width", 1.0, 0.0625, 16.0);
 
 	/**
 	 * Controls the player's model height.
+	 * The default of 1.0 is an unmodified scale.
 	 * Stacks with vanilla's scale modifier and other AEA scale modifiers, but cannot go past
-	 * the min or max value of the original scale.
+	 * the min or max value of the original scale attribute.
 	 */
 	public static final RegistryEntry<EntityAttribute> MODEL_HEIGHT = createAttribute("model_height", "generic.model_height", 1.0, 0.0625, 16.0);
+
+	/**
+	 * Controls the player's visibility to mobs.
+	 * By default, this value may vary depending on a few factors, but starts at 1.0.
+	 */
+	public static final RegistryEntry<EntityAttribute> MOB_DETECTION = createAttribute("mob_detection", "generic.mob_detection", 0.0, 0, 1024.0);
 
 	/**
 	 * Modifies the experience dropped from mining blocks and killing mobs.
