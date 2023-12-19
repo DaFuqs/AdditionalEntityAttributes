@@ -6,14 +6,23 @@
   "mixins": [
     "common.ApplyBonusLootFunctionMixin",
     "common.BlockMixin",
+    "common.CaveSpiderEntityMixin",
     "common.EntityMixin",
     "common.LivingEntityMixin",
+    "common.LivingEntityScaleMixin",
     "common.PlayerEntityMixin",
     "common.RandomChanceLootConditionMixin",
-    "common.RandomChanceWithLootingLootConditionMixin"
+    "common.RandomChanceWithLootingLootConditionMixin",
+    "common.SpiderEntityMixin"
   ],
   "client": [
-    "client.BackgroundRendererMixin"
+    "client.BackgroundRendererMixin",
+    "client.CameraMixin",
+    "client.EndermanEntityRendererMixin",
+    "client.EntityRendererAccessor",
+    "client.LivingEntityRendererMixin",
+    "client.PlayerEntityRendererMixin",
+    "client.ShulkerEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

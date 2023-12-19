@@ -4,7 +4,6 @@ import de.dafuqs.additionalentityattributes.*;
 import net.fabricmc.api.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
-import net.minecraft.entity.damage.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.fluid.*;
 import net.minecraft.registry.tag.*;
@@ -31,6 +30,14 @@ public abstract class LivingEntityMixin {
         info.getReturnValue().add(AdditionalEntityAttributes.DIG_SPEED);
         info.getReturnValue().add(AdditionalEntityAttributes.BONUS_LOOT_COUNT_ROLLS);
         info.getReturnValue().add(AdditionalEntityAttributes.BONUS_RARE_LOOT_ROLLS);
+        info.getReturnValue().add(AdditionalEntityAttributes.WIDTH);
+        info.getReturnValue().add(AdditionalEntityAttributes.HEIGHT);
+        info.getReturnValue().add(AdditionalEntityAttributes.HITBOX_SCALE);
+        info.getReturnValue().add(AdditionalEntityAttributes.HITBOX_WIDTH);
+        info.getReturnValue().add(AdditionalEntityAttributes.HITBOX_HEIGHT);
+        info.getReturnValue().add(AdditionalEntityAttributes.MODEL_SCALE);
+        info.getReturnValue().add(AdditionalEntityAttributes.MODEL_WIDTH);
+        info.getReturnValue().add(AdditionalEntityAttributes.MODEL_HEIGHT);
         info.getReturnValue().add(AdditionalEntityAttributes.MAGIC_PROTECTION);
     }
 
@@ -98,19 +105,5 @@ public abstract class LivingEntityMixin {
         } else {
             return (int) (originalXP * Support.getExperienceMod(this.attackingPlayer));
         }
-    }
-
-    @ModifyVariable(method = "modifyAppliedDamage", at = @At(value = "LOAD", ordinal = 4), argsOnly = true)
-    private float additionalEntityAttributes$reduceMagicDamage(float damage, DamageSource source) {
-        EntityAttributeInstance magicProt = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.MAGIC_PROTECTION);
-
-        if (magicProt == null) {
-            return damage;
-        }
-
-        if (source.isIn(DamageTypeTags.WITCH_RESISTANT_TO) && magicProt.getValue() > 0) {
-            damage = (float) Math.max(damage - magicProt.getValue(), 0);
-        }
-        return damage;
     }
 }
