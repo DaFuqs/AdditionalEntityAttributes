@@ -1,5 +1,6 @@
 package de.dafuqs.additionalentityattributes.mixin.common;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import de.dafuqs.additionalentityattributes.*;
 import net.fabricmc.api.*;
 import net.minecraft.entity.*;
@@ -31,6 +32,7 @@ public abstract class LivingEntityMixin {
         info.getReturnValue().add(AdditionalEntityAttributes.DIG_SPEED);
         info.getReturnValue().add(AdditionalEntityAttributes.BONUS_LOOT_COUNT_ROLLS);
         info.getReturnValue().add(AdditionalEntityAttributes.BONUS_RARE_LOOT_ROLLS);
+        info.getReturnValue().add(AdditionalEntityAttributes.JUMP_HEIGHT);
         info.getReturnValue().add(AdditionalEntityAttributes.MAGIC_PROTECTION);
     }
 
@@ -112,5 +114,31 @@ public abstract class LivingEntityMixin {
             damage = (float) Math.max(damage - magicProt.getValue(), 0);
         }
         return damage;
+    }
+
+    @ModifyReturnValue(method = "getJumpVelocity", at = @At("RETURN"))
+    public float additionalEntityAttributes$modifyJumpVelocity(float original) {
+        EntityAttributeInstance instance = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.JUMP_HEIGHT);
+
+        if (instance != null) {
+            float totalAmount = original;
+            for (EntityAttributeModifier modifier : instance.getModifiers()) {
+                float amount = (float) modifier.getValue();
+
+                if (modifier.getOperation() == EntityAttributeModifier.Operation.ADDITION)
+                    totalAmount += amount;
+                else
+                    totalAmount *= (amount + 1);
+            }
+
+            // Players will run this method twice, so we have to do
+            // some math to make sure that it's accurate.
+            if ((LivingEntity)(Object)this instanceof PlayerEntity) {
+                totalAmount = original + (totalAmount - original) / 2;
+            }
+            original = totalAmount;
+        }
+
+        return original;
     }
 }

@@ -83,6 +83,12 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	 * - `BONUS_RARE_LOOT_ROLLS = 0.5` will result in another roll with 5% chance
 	 */
 	public static final EntityAttribute BONUS_RARE_LOOT_ROLLS = createAttribute("generic.bonus_rare_loot_rolls", 0.0D, 0.0D, 128.0);
+
+	/**
+	 * Controls the jump height of the player.
+	 * By default, the player jumps at a height of 0.42.
+	 */
+	public static final EntityAttribute JUMP_HEIGHT = createAttribute("generic.jump_height", 0.0D, -1024.0, 1024.0);
 	
 	/**
 	 * Modifies the experience dropped from mining blocks and killing mobs.
@@ -107,6 +113,7 @@ public class AdditionalEntityAttributes implements ModInitializer {
         register("dig_speed", DIG_SPEED);
 		register("bonus_rare_loot_rolls", BONUS_RARE_LOOT_ROLLS);
 		register("bonus_loot_count_rolls", BONUS_LOOT_COUNT_ROLLS);
+		register("jump_height", JUMP_HEIGHT);
         register("dropped_experience", DROPPED_EXPERIENCE);
         register("magic_protection", MAGIC_PROTECTION);
 	}
