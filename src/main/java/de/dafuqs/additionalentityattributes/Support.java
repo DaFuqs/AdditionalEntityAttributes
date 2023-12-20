@@ -67,7 +67,7 @@ public class Support {
 			return original;
 		}
 
-		EntityAttributeInstance instance = entity.getAttributeInstance(AdditionalEntityAttributes.MOB_DETECTION);
+		EntityAttributeInstance instance = entity.getAttributeInstance(AdditionalEntityAttributes.MOB_DETECTION_RANGE);
 		if (instance != null) {
 			for (EntityAttributeModifier modifier : instance.getModifiers()) {
 				float amount = (float) modifier.getValue();

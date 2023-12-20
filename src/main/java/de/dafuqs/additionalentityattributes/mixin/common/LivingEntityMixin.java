@@ -39,7 +39,7 @@ public abstract class LivingEntityMixin {
         info.getReturnValue().add(AdditionalEntityAttributes.MODEL_SCALE);
         info.getReturnValue().add(AdditionalEntityAttributes.MODEL_WIDTH);
         info.getReturnValue().add(AdditionalEntityAttributes.MODEL_HEIGHT);
-        info.getReturnValue().add(AdditionalEntityAttributes.MOB_DETECTION);
+        info.getReturnValue().add(AdditionalEntityAttributes.MOB_DETECTION_RANGE);
         info.getReturnValue().add(AdditionalEntityAttributes.MAGIC_PROTECTION);
     }
 
@@ -112,7 +112,6 @@ public abstract class LivingEntityMixin {
     @ModifyReturnValue(method = "getAttackDistanceScalingFactor", at = @At("RETURN"))
     private double additionalEntityAttributes$modifyVisibility(double original) {
         LivingEntity thisAsLiving = (LivingEntity)(Object)this;
-        // We utilise the slight math here so developers can use mutlipliers.
         return Support.getMobDetectionValue(thisAsLiving, original);
     }
 }

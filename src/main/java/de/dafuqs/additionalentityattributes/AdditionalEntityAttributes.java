@@ -143,10 +143,10 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	public static final RegistryEntry<EntityAttribute> MODEL_HEIGHT = createAttribute("model_height", "generic.model_height", 1.0, 0.0625, 16.0);
 
 	/**
-	 * Controls the player's visibility to mobs.
-	 * By default, this value may vary depending on a few factors, but starts at 1.0.
+	 * Controls the range that the player can be detected by hostile mobs.
+	 * By default, this starts at 1.0, but may be different depending on a few factors.
 	 */
-	public static final RegistryEntry<EntityAttribute> MOB_DETECTION = createAttribute("mob_detection", "generic.mob_detection", 0.0, 0, 1024.0);
+	public static final RegistryEntry<EntityAttribute> MOB_DETECTION_RANGE = createAttribute("mob_detection_range", "generic.mob_detection_range", 0.0, 0, 1024.0);
 
 	/**
 	 * Modifies the experience dropped from mining blocks and killing mobs.
