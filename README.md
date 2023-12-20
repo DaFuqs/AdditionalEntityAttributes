@@ -13,6 +13,8 @@ These attributes allow mod compatibility and serve as an API for mods that make 
 - LUNG_CAPACITY: Extra air when underwater / suffocating
 - BONUS_LOOT_COUNT_ROLLS: Controls the number of drops the player receives when using enchantments such as Loot and Luck.
 - BONUS_RARE_LOOT_ROLLS: The number of times the chance-based loot table is rolled.
+- WIDTH: Controls the width of the entity's hitbox and model.
+- HEIGHT: Controls the height of the entity's hitbox and model.
 - HITBOX_SCALE: Controls the scale of the entity's hitbox without changing the model's scale.
 - MODEL_SCALE: Controls the scale of the entity's model without changing the hitbox's scale.
 - HITBOX_WIDTH: Controls the width of the entity's hitbox.
