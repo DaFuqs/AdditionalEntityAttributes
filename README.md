@@ -13,6 +13,7 @@ These attributes allow mod compatibility and serve as an API for mods that make 
 - LUNG_CAPACITY: Extra air when underwater / suffocating
 - BONUS_LOOT_COUNT_ROLLS: Controls the number of drops the player receives when using enchantments such as Loot and Luck.
 - BONUS_RARE_LOOT_ROLLS: The number of times the chance-based loot table is rolled.
+- JUMP_HEIGHT: Controls the jump height of the player.
 - DROPPED_EXPERIENCE: Changes the amount of experience dropped from mining blocks and killing mobs.
 - MAGIC_PROTECTION: Reduces the amount of magic damage taken.
 

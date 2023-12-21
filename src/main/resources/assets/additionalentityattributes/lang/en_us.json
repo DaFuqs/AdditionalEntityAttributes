@@ -8,6 +8,7 @@
   "attribute.name.generic.additionalentityattributes.generic.dig_speed": "Dig Speed",
   "attribute.name.generic.additionalentityattributes.generic.bonus_rare_loot_rolls": "Additional Rare Loot Rolls",
   "attribute.name.generic.additionalentityattributes.generic.bonus_loot_count_rolls": "Additional Enchantment Loot Rolls",
+  "attribute.name.generic.additionalentityattributes.generic.jump_height": "Jump Height",
   "attribute.name.generic.additionalentityattributes.player.dropped_experience": "Dropped Experience",
   "attribute.name.generic.additionalentityattributes.player.magic_protection": "Magic Protection"
 }
