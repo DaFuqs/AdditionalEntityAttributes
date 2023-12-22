@@ -29,9 +29,9 @@ public abstract class ApplyBonusLootFunctionMixin {
 	private RegistryEntry<Enchantment> enchantment;
 
 	@ModifyVariable(method = "process(Lnet/minecraft/item/ItemStack;Lnet/minecraft/loot/context/LootContext;)Lnet/minecraft/item/ItemStack;", at = @At("STORE"), ordinal = 1)
-	public int additionalEntityAttributes$applyBonusLoot(int oldValue, ItemStack stack, LootContext context) {
-		// if the player has the ANOTHER_DRAW effect the bonus loot of
-		// this function gets rerolled potency+1 times and the best one taken
+	public int additionalEntityAttributes$applyBonusLoot(int original, ItemStack stack, LootContext context) {
+		// the bonus loot of this method gets rerolled x times
+		// and the highest result will be returned
 		ItemStack itemStack = context.get(LootContextParameters.TOOL);
 		Entity entity = context.get(LootContextParameters.THIS_ENTITY);
 		if (itemStack != null && entity instanceof LivingEntity livingEntity) {
@@ -40,7 +40,7 @@ public abstract class ApplyBonusLootFunctionMixin {
 				EntityAttributeInstance attributeInstance = livingEntity.getAttributeInstance(AdditionalEntityAttributes.BONUS_LOOT_COUNT_ROLLS);
 				if (attributeInstance != null) {
 					int bonusRollCount = (int) attributeInstance.getValue();
-					int highestRoll = oldValue;
+					int highestRoll = original;
 					for (int i = 0; i < bonusRollCount; i++) {
 						int thisRoll = this.formula.getValue(context.getRandom(), stack.getCount(), enchantmentLevel);
 						highestRoll = Math.max(highestRoll, thisRoll);
@@ -49,7 +49,7 @@ public abstract class ApplyBonusLootFunctionMixin {
 				}
 			}
 		}
-		return oldValue;
+		return original;
 	}
 	
 }
