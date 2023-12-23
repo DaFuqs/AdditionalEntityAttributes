@@ -5,6 +5,7 @@ import de.dafuqs.additionalentityattributes.*;
 import net.fabricmc.api.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
+import net.minecraft.entity.damage.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.fluid.*;
 import net.minecraft.registry.tag.*;
@@ -31,15 +32,7 @@ public abstract class LivingEntityMixin {
         info.getReturnValue().add(AdditionalEntityAttributes.DIG_SPEED);
         info.getReturnValue().add(AdditionalEntityAttributes.BONUS_LOOT_COUNT_ROLLS);
         info.getReturnValue().add(AdditionalEntityAttributes.BONUS_RARE_LOOT_ROLLS);
-        info.getReturnValue().add(AdditionalEntityAttributes.WIDTH);
-        info.getReturnValue().add(AdditionalEntityAttributes.HEIGHT);
-        info.getReturnValue().add(AdditionalEntityAttributes.HITBOX_SCALE);
-        info.getReturnValue().add(AdditionalEntityAttributes.HITBOX_WIDTH);
-        info.getReturnValue().add(AdditionalEntityAttributes.HITBOX_HEIGHT);
-        info.getReturnValue().add(AdditionalEntityAttributes.MODEL_SCALE);
-        info.getReturnValue().add(AdditionalEntityAttributes.MODEL_WIDTH);
-        info.getReturnValue().add(AdditionalEntityAttributes.MODEL_HEIGHT);
-        info.getReturnValue().add(AdditionalEntityAttributes.MOB_DETECTION_RANGE);
+        info.getReturnValue().add(AdditionalEntityAttributes.JUMP_HEIGHT);
         info.getReturnValue().add(AdditionalEntityAttributes.MAGIC_PROTECTION);
     }
 
@@ -109,9 +102,43 @@ public abstract class LivingEntityMixin {
         }
     }
 
-    @ModifyReturnValue(method = "getAttackDistanceScalingFactor", at = @At("RETURN"))
-    private double additionalEntityAttributes$modifyVisibility(double original) {
-        LivingEntity thisAsLiving = (LivingEntity)(Object)this;
-        return Support.getMobDetectionValue(thisAsLiving, original);
+    @ModifyVariable(method = "modifyAppliedDamage", at = @At(value = "LOAD", ordinal = 4), argsOnly = true)
+    private float additionalEntityAttributes$reduceMagicDamage(float damage, DamageSource source) {
+        EntityAttributeInstance magicProt = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.MAGIC_PROTECTION);
+
+        if (magicProt == null) {
+            return damage;
+        }
+
+        if (source.isIn(DamageTypeTags.WITCH_RESISTANT_TO) && magicProt.getValue() > 0) {
+            damage = (float) Math.max(damage - magicProt.getValue(), 0);
+        }
+        return damage;
+    }
+
+    @ModifyReturnValue(method = "getJumpVelocity", at = @At("RETURN"))
+    public float additionalEntityAttributes$modifyJumpVelocity(float original) {
+        EntityAttributeInstance instance = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.JUMP_HEIGHT);
+
+        if (instance != null) {
+            float totalAmount = original;
+            for (EntityAttributeModifier modifier : instance.getModifiers()) {
+                float amount = (float) modifier.getValue();
+
+                if (modifier.getOperation() == EntityAttributeModifier.Operation.ADDITION)
+                    totalAmount += amount;
+                else
+                    totalAmount *= (amount + 1);
+            }
+
+            // Players will run this method twice, so we have to do
+            // some math to make sure that it's accurate.
+            if ((LivingEntity)(Object)this instanceof PlayerEntity) {
+                totalAmount = original + (totalAmount - original) / 2;
+            }
+            original = totalAmount;
+        }
+
+        return original;
     }
 }
