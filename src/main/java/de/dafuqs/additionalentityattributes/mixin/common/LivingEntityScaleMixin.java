@@ -47,7 +47,7 @@ public abstract class LivingEntityScaleMixin {
             this.additionalEntityAttributes$previousHitboxWidth = hitboxWidth;
             updateScales = true;
         }
-        if (hitboxWidth != additionalEntityAttributes$previousHitboxHeight) {
+        if (hitboxHeight != additionalEntityAttributes$previousHitboxHeight) {
             this.additionalEntityAttributes$previousHitboxHeight = hitboxHeight;
             updateScales = true;
         }
