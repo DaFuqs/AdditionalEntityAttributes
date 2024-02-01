@@ -32,6 +32,15 @@ public abstract class LivingEntityMixin {
         info.getReturnValue().add(AdditionalEntityAttributes.DIG_SPEED);
         info.getReturnValue().add(AdditionalEntityAttributes.BONUS_LOOT_COUNT_ROLLS);
         info.getReturnValue().add(AdditionalEntityAttributes.BONUS_RARE_LOOT_ROLLS);
+        info.getReturnValue().add(AdditionalEntityAttributes.WIDTH);
+        info.getReturnValue().add(AdditionalEntityAttributes.HEIGHT);
+        info.getReturnValue().add(AdditionalEntityAttributes.HITBOX_SCALE);
+        info.getReturnValue().add(AdditionalEntityAttributes.HITBOX_WIDTH);
+        info.getReturnValue().add(AdditionalEntityAttributes.HITBOX_HEIGHT);
+        info.getReturnValue().add(AdditionalEntityAttributes.MODEL_SCALE);
+        info.getReturnValue().add(AdditionalEntityAttributes.MODEL_WIDTH);
+        info.getReturnValue().add(AdditionalEntityAttributes.MODEL_HEIGHT);
+        info.getReturnValue().add(AdditionalEntityAttributes.MOB_DETECTION_RANGE);
         info.getReturnValue().add(AdditionalEntityAttributes.JUMP_HEIGHT);
         info.getReturnValue().add(AdditionalEntityAttributes.MAGIC_PROTECTION);
     }
