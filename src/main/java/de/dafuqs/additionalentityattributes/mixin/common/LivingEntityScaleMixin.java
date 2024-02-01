@@ -8,10 +8,8 @@ import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.tag.DamageTypeTags;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,6 +22,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = LivingEntity.class, priority = 500)
 public abstract class LivingEntityScaleMixin {
     @Unique
+    private boolean additionalEntityAttributes$hasInitializedDimensions = false;
+    @Unique
     private double additionalEntityAttributes$previousHitboxWidth;
     @Unique
     private double additionalEntityAttributes$previousHitboxHeight;
@@ -34,11 +34,19 @@ public abstract class LivingEntityScaleMixin {
         boolean updateScales = false;
 
         double hitboxWidth = Support.getHitboxWidth(thisAsLiving, 1.0F);
+        double hitboxHeight = Support.getHitboxHeight(thisAsLiving, 1.0F);
+
+        if (!additionalEntityAttributes$hasInitializedDimensions) {
+            additionalEntityAttributes$previousHitboxWidth = hitboxWidth;
+            additionalEntityAttributes$previousHitboxHeight = hitboxHeight;
+            additionalEntityAttributes$hasInitializedDimensions = true;
+            return;
+        }
+
         if (hitboxWidth != additionalEntityAttributes$previousHitboxWidth) {
             this.additionalEntityAttributes$previousHitboxWidth = hitboxWidth;
             updateScales = true;
         }
-        double hitboxHeight = Support.getHitboxHeight(thisAsLiving, 1.0F);
         if (hitboxWidth != additionalEntityAttributes$previousHitboxHeight) {
             this.additionalEntityAttributes$previousHitboxHeight = hitboxHeight;
             updateScales = true;
