@@ -23,15 +23,9 @@ public abstract class LivingEntityMixin {
 
     @Inject(method = "createLivingAttributes()Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;", require = 1, allow = 1, at = @At("RETURN"))
     private static void additionalEntityAttributes$addAttributes(final CallbackInfoReturnable<DefaultAttributeContainer.Builder> info) {
-        info.getReturnValue().add(AdditionalEntityAttributes.WATER_VISIBILITY);
         info.getReturnValue().add(AdditionalEntityAttributes.WATER_SPEED);
-        info.getReturnValue().add(AdditionalEntityAttributes.LUNG_CAPACITY);
-        info.getReturnValue().add(AdditionalEntityAttributes.LAVA_VISIBILITY);
         info.getReturnValue().add(AdditionalEntityAttributes.LAVA_SPEED);
-        info.getReturnValue().add(AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE);
-        info.getReturnValue().add(AdditionalEntityAttributes.DIG_SPEED);
-        info.getReturnValue().add(AdditionalEntityAttributes.BONUS_LOOT_COUNT_ROLLS);
-        info.getReturnValue().add(AdditionalEntityAttributes.BONUS_RARE_LOOT_ROLLS);
+        info.getReturnValue().add(AdditionalEntityAttributes.LUNG_CAPACITY);
         info.getReturnValue().add(AdditionalEntityAttributes.JUMP_HEIGHT);
         info.getReturnValue().add(AdditionalEntityAttributes.MAGIC_PROTECTION);
     }
