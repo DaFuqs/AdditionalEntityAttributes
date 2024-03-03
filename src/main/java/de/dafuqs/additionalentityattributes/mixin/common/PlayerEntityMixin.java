@@ -1,20 +1,24 @@
 package de.dafuqs.additionalentityattributes.mixin.common;
 
-import de.dafuqs.additionalentityattributes.*;
-import net.minecraft.entity.*;
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
+import de.dafuqs.additionalentityattributes.AdditionalEntityAttributesEntityTags;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.stat.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
-import org.spongepowered.asm.mixin.*;
-import org.spongepowered.asm.mixin.injection.*;
+import net.minecraft.util.math.Box;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.*;
-import java.util.function.*;
+import java.util.List;
+import java.util.function.Predicate;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin {
@@ -34,7 +38,7 @@ public abstract class PlayerEntityMixin {
 	/**
 	 * By default, the additional crit damage is a 50% bonus
 	 */
-	@ModifyConstant(method = "attack(Lnet/minecraft/entity/Entity;)V", constant = @Constant(floatValue = 1.5F))
+	@ModifyExpressionValue(method = "attack(Lnet/minecraft/entity/Entity;)V", at = @At(value = "CONSTANT", args = "floatValue=1.5F"))
 	public float additionalEntityAttributes$applyCriticalBonusDamage(float original) {
 		EntityAttributeInstance criticalDamageMultiplier = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE);
 		if (criticalDamageMultiplier == null) {

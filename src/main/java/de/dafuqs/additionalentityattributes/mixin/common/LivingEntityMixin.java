@@ -1,5 +1,6 @@
 package de.dafuqs.additionalentityattributes.mixin.common;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import de.dafuqs.additionalentityattributes.*;
 import net.fabricmc.api.*;
@@ -43,7 +44,7 @@ public abstract class LivingEntityMixin {
         }
     }
 
-    @ModifyConstant(method = "swimUpward", constant = @Constant(doubleValue = 0.03999999910593033D))
+    @ModifyExpressionValue(method = "swimUpward", at = @At(value = "CONSTANT", args = "doubleValue=0.03999999910593033D"))
     public double additionalEntityAttributes$modifyUpwardSwimming(double original, TagKey<Fluid> fluid) {
         if (fluid == FluidTags.WATER) {
             EntityAttributeInstance waterSpeed = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.WATER_SPEED);
@@ -61,7 +62,7 @@ public abstract class LivingEntityMixin {
     }
 
     @Environment(EnvType.CLIENT)
-    @ModifyConstant(method = "knockDownwards", constant = @Constant(doubleValue = -0.03999999910593033D))
+    @ModifyExpressionValue(method = "knockDownwards", at = @At(value = "CONSTANT", args = "doubleValue=-0.03999999910593033D"))
     public double additionalEntityAttributes$knockDownwards(double original) {
         EntityAttributeInstance waterSpeed = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.WATER_SPEED);
         if (waterSpeed == null) {
@@ -74,7 +75,7 @@ public abstract class LivingEntityMixin {
         }
     }
 
-    @ModifyConstant(method = "travel", constant = {@Constant(doubleValue = 0.5D, ordinal = 0), @Constant(doubleValue = 0.5D, ordinal = 1), @Constant(doubleValue = 0.5D, ordinal = 2)})
+    @ModifyExpressionValue(method = "travel", at = {@At(value = "CONSTANT", args = "doubleValue=0.5D", ordinal = 0), @At(value = "CONSTANT", args = "doubleValue=0.5D", ordinal = 1), @At(value = "CONSTANT", args = "doubleValue=0.5D", ordinal = 2)})
     private double additionalEntityAttributes$increasedLavaSpeed(double original) {
         EntityAttributeInstance lavaSpeed = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.LAVA_SPEED);
         if (lavaSpeed == null) {
