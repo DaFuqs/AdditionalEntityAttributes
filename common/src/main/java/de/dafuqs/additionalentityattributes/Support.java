@@ -9,8 +9,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 
 public class Support {
 
-	private static final double MIN_SCALE = 0.0625;
-	private static final double MAX_SCALE = 16.0;
+	public static final double MIN_SCALE = 0.0625;
+	public static final double MAX_SCALE = 16.0;
 	
 	public static float getExperienceMod(LivingEntity entity) {
 		if (entity == null) {

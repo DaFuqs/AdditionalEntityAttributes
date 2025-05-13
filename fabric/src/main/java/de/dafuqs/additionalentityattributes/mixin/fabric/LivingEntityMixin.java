@@ -1,6 +1,7 @@
 package de.dafuqs.additionalentityattributes.mixin.fabric;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.TagKey;
@@ -10,27 +11,26 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.level.material.Fluid;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
 
-    @Inject(method = "createLivingAttributes", require = 1, allow = 1, at = @At("RETURN"))
-    private static void additionalEntityAttributes$addAttributes(final CallbackInfoReturnable<AttributeSupplier.Builder> info) {
-        info.getReturnValue().add(AdditionalEntityAttributes.WATER_SPEED);
-        info.getReturnValue().add(AdditionalEntityAttributes.LAVA_SPEED);
-        info.getReturnValue().add(AdditionalEntityAttributes.WIDTH);
-        info.getReturnValue().add(AdditionalEntityAttributes.HEIGHT);
-        info.getReturnValue().add(AdditionalEntityAttributes.HITBOX_SCALE);
-        info.getReturnValue().add(AdditionalEntityAttributes.HITBOX_WIDTH);
-        info.getReturnValue().add(AdditionalEntityAttributes.HITBOX_HEIGHT);
-        info.getReturnValue().add(AdditionalEntityAttributes.MODEL_SCALE);
-        info.getReturnValue().add(AdditionalEntityAttributes.MODEL_WIDTH);
-        info.getReturnValue().add(AdditionalEntityAttributes.MODEL_HEIGHT);
-        info.getReturnValue().add(AdditionalEntityAttributes.MOB_DETECTION_RANGE);
-        info.getReturnValue().add(AdditionalEntityAttributes.MAGIC_PROTECTION);
+    @ModifyReturnValue(method = "createLivingAttributes", require = 1, allow = 1, at = @At("RETURN"))
+    private static AttributeSupplier.Builder additionalEntityAttributes$addAttributes(AttributeSupplier.Builder original) {
+        return original
+            .add(AdditionalEntityAttributes.WATER_SPEED)
+            .add(AdditionalEntityAttributes.LAVA_SPEED)
+            .add(AdditionalEntityAttributes.WIDTH)
+            .add(AdditionalEntityAttributes.HEIGHT)
+            .add(AdditionalEntityAttributes.HITBOX_SCALE)
+            .add(AdditionalEntityAttributes.HITBOX_WIDTH)
+            .add(AdditionalEntityAttributes.HITBOX_HEIGHT)
+            .add(AdditionalEntityAttributes.MODEL_SCALE)
+            .add(AdditionalEntityAttributes.MODEL_WIDTH)
+            .add(AdditionalEntityAttributes.MODEL_HEIGHT)
+            .add(AdditionalEntityAttributes.MOB_DETECTION_RANGE)
+            .add(AdditionalEntityAttributes.MAGIC_PROTECTION);
     }
 
     @ModifyExpressionValue(method = "jumpInLiquid", at = @At(value = "CONSTANT", args = "doubleValue=0.03999999910593033D"))
