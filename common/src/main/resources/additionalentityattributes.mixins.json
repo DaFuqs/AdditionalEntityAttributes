@@ -1,34 +1,35 @@
 {
-  "required": true,
-  "minVersion": "0.8",
-  "package": "de.dafuqs.additionalentityattributes.mixin",
-  "refmap": "additionalentityattributes.refmap.json",
-  "compatibilityLevel": "JAVA_21",
-  "mixins": [
-    "common.ApplyBonusCountMixin",
-    "common.BlockMixin",
-    "common.CaveSpiderMixin",
-    "common.EnchantmentHelperMixin",
-    "common.LivingEntityMixin",
-    "common.LivingEntityScaleMixin",
-    "common.LootItemRandomChanceConditionMixin",
-    "common.LootItemRandomChanceWithEnchantedBonusConditionMixin",
-    "common.PlayerMixin",
-    "common.SpiderMixin",
-    "common.TargetingConditionsMixin"
-  ],
-  "client": [
-    "client.CameraMixin",
-    "client.EndermanRendererMixin",
-    "client.EntityRendererAccessor",
-    "client.FogRendererMixin",
-    "client.LivingEntityRendererMixin",
-    "client.PlayerRendererMixin",
-    "client.ShulkerRendererMixin"
-  ],
-  "server": [],
-  "injectors": {
-    "defaultRequire": 1
+    "required": true,
+    "minVersion": "0.8",
+    "package": "de.dafuqs.additionalentityattributes.mixin",
+    "refmap": "additionalentityattributes.refmap.json",
+    "compatibilityLevel": "JAVA_21",
+    "mixins": [
+        "common.ApplyBonusCountMixin",
+        "common.BlockMixin",
+        "common.CaveSpiderMixin",
+        "common.EnchantmentHelperMixin",
+        "common.LivingEntityMixin",
+        "common.LivingEntityScaleMixin",
+        "common.LootItemRandomChanceConditionMixin",
+        "common.LootItemRandomChanceWithEnchantedBonusConditionMixin",
+        "common.PlayerMixin",
+        "common.SpiderMixin",
+        "common.TargetingConditionsMixin"
+    ],
+    "client": [
+        "client.CameraMixin",
+        "client.EndermanRendererMixin",
+        "client.EntityRendererAccessor",
+        "client.FogRendererMixin",
+        "client.LivingEntityRendererMixin",
+        "client.LivingEntityRenderStateMixin",
+        "client.PlayerRendererMixin",
+        "client.ShulkerRendererMixin"
+    ],
+    "server": [],
+    "injectors": {
+        "defaultRequire": 1
   }
 }
 
