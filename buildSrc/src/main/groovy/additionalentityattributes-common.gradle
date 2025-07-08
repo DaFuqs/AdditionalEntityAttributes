@@ -58,11 +58,11 @@ jar {
     manifest {
         attributes([
                 'Specification-Title'   : "Additional Entity Attributes",
-                'Specification-Vendor'  : "DaFuqs, MerchantPug",
+                'Specification-Vendor'  : "DaFuqs, MerchantCalico",
                 'Specification-Version' : archiveVersion,
                 'Implementation-Title'  : project.name,
                 'Implementation-Version': archiveVersion,
-                'Implementation-Vendor' : "DaFuqs, MerchantPug",
+                'Implementation-Vendor' : "DaFuqs, MerchantCalico",
                 'Built-On-Minecraft'    : minecraft_version
         ])
     }

@@ -9,7 +9,7 @@ displayName = "Additional Entity Attributes"
 displayURL="https://github.com/DaFuqs/AdditionalEntityAttributes"
 logoFile="additionalentityattributes.png"
 credits="Apace100, Noaaan"
-authors = "DaFuqs, MerchantPug"
+authors = "DaFuqs, MerchantCalico"
 description = '''Additional Entity Attributes'''
 [[mixins]]
 config = "additionalentityattributes.mixins.json"
