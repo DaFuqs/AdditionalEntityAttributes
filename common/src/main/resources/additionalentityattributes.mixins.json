@@ -21,11 +21,12 @@
         "client.CameraMixin",
         "client.EndermanRendererMixin",
         "client.EntityRendererAccessor",
-        "client.FogRendererMixin",
+        "client.LavaFogEnvironmentMixin",
         "client.LivingEntityRendererMixin",
         "client.LivingEntityRenderStateMixin",
         "client.PlayerRendererMixin",
-        "client.ShulkerRendererMixin"
+        "client.ShulkerRendererMixin",
+        "client.WaterFogEnvironmentMixin"
     ],
     "server": [],
     "injectors": {

@@ -8,7 +8,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
-@EventBusSubscriber(modid = AdditionalEntityAttributes.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = AdditionalEntityAttributes.MOD_ID)
 public class AdditionalEntityAttributesNeoForge {
     /*
      * We run the init method in RegisterEvent so we can register before freeze.
