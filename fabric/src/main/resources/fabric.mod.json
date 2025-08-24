@@ -31,5 +31,11 @@
     "minecraft": "${fabric_minecraft_version_range}",
     "fabricloader": "*",
     "fabric-api": "*"
+  },
+  "custom": {
+    "loom:injected_interfaces": {},
+    "modmenu": {
+      "badges": [ "library" ]
+    }
   }
 }
