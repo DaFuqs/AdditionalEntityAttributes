@@ -4,6 +4,7 @@ plugins {
 }
 
 neoForge {
+    neoforge_version_range = neoforge_version_range
     neoFormVersion = neoform_version
     // Automatically enable AccessTransformers if the file exists
     def at = file("src/main/resources/${mod_id}.cfg")
