@@ -19,7 +19,7 @@ These attributes allow mod compatibility and serve as an API for mods that make 
 - `HITBOX_HEIGHT` (living entities): Controls the player's hitbox height
 - `MODEL_SCALE` (living entities): Controls the player's model scale
 - `MODEL_WIDTH` (living entities): Controls the player's model width
-- `HITBOX_HEIGHT` (living entities): Controls the player's model height
+- `MODEL_HEIGHT` (living entities): Controls the player's model height
 - `MOB_DETECTION_RANGE` (living entities): Controls the range that the player can be detected by hostile mobs
 - `WATER_VISIBILITY` (player only): Controls the player's visibility in water by adjusting the fog distance
 - `LAVA_VISIBILITY` (player only): Controls the player's visibility in lava by adjusting the fog distance
