@@ -19,12 +19,7 @@
   ],
   "client": [
     "client.CameraMixin",
-    "client.EndermanRendererMixin",
-    "client.EntityRendererAccessor",
-    "client.FogRendererMixin",
-    "client.LivingEntityRendererMixin",
-    "client.PlayerRendererMixin",
-    "client.ShulkerRendererMixin"
+    "client.FogRendererMixin"
   ],
   "server": [],
   "injectors": {
