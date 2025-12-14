@@ -18,13 +18,13 @@
         "common.TargetingConditionsMixin"
     ],
     "client": [
+        "client.AvatarRendererMixin",
         "client.CameraMixin",
         "client.EndermanRendererMixin",
         "client.EntityRendererAccessor",
         "client.LavaFogEnvironmentMixin",
         "client.LivingEntityRendererMixin",
         "client.LivingEntityRenderStateMixin",
-        "client.PlayerRendererMixin",
         "client.ShulkerRendererMixin",
         "client.WaterFogEnvironmentMixin"
     ],

@@ -4,16 +4,15 @@ plugins {
 }
 
 neoForge {
-    neoforge_version_range = neoforge_version_range
-    neoFormVersion = neoform_version
+    neoFormVersion = project.neoform_version
     // Automatically enable AccessTransformers if the file exists
     def at = file("src/main/resources/${mod_id}.cfg")
     if (at.exists()) {
         setAccessTransformers(at)
     }
     parchment {
-        minecraftVersion = parchment_minecraft
-        mappingsVersion = parchment_version
+        minecraftVersion = project.parchment_minecraft
+        mappingsVersion = project.parchment_version
     }
 }
 
