@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 // This is so Pehkui and other mods that may touch this may run without limits.
 @Mixin(value = LivingEntityRenderer.class, priority = 500)
 public abstract class LivingEntityRendererMixin<T extends LivingEntity, S extends LivingEntityRenderState, M extends EntityModel<? super S>> {
-    @ModifyArgs(method = "render(Lnet/minecraft/client/renderer/entity/state/LivingEntityRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;scale(FFF)V", ordinal = 0))
+    @ModifyArgs(method = "submit(Lnet/minecraft/client/renderer/entity/state/LivingEntityRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/state/CameraRenderState;)V", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;scale(FFF)V", ordinal = 0))
     private void additionalEntityAttributes$applyModelScales(Args args, @Local(argsOnly = true) LivingEntityRenderState renderState) {
         float x = args.get(0);
         float y = args.get(1);
