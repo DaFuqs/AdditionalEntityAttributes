@@ -1,5 +1,6 @@
 package de.dafuqs.additionalentityattributes.mixin.common;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
 import net.minecraft.core.Holder;
 import net.minecraft.world.entity.LivingEntity;
@@ -27,17 +28,18 @@ public abstract class LootItemRandomChanceWithEnchantedBonusConditionMixin {
 	@Shadow
 	@Final
 	private LevelBasedValue enchantedChance;
-	
-	@Inject(at = @At("RETURN"), method = "test(Lnet/minecraft/world/level/storage/loot/LootContext;)Z", cancellable = true)
-	public void additionalEntityAttributes$applyBonusLoot(LootContext lootContext, CallbackInfoReturnable<Boolean> cir) {
+
+	@ModifyReturnValue(method = "test(Lnet/minecraft/world/level/storage/loot/LootContext;)Z", at = @At("RETURN"))
+	public boolean additionalEntityAttributes$applyBonusLoot(boolean original, LootContext lootContext) {
 		// if the result was to not drop a drop before reroll
-		if (!cir.getReturnValue() && lootContext.getOptionalParameter(LootContextParams.ATTACKING_ENTITY) instanceof LivingEntity livingEntity) {
+		if (!original && lootContext.getOptionalParameter(LootContextParams.ATTACKING_ENTITY) instanceof LivingEntity livingEntity) {
 			AttributeInstance attributeInstance = livingEntity.getAttribute(AdditionalEntityAttributes.BONUS_RARE_LOOT_ROLLS);
 			if (attributeInstance != null) {
 				int level = EnchantmentHelper.getEnchantmentLevel(this.enchantment, livingEntity);
-				cir.setReturnValue(lootContext.getRandom().nextFloat() < this.enchantedChance.calculate(level) * (float) attributeInstance.getValue());
+				return lootContext.getRandom().nextFloat() < this.enchantedChance.calculate(level) * (float) attributeInstance.getValue();
 			}
 		}
+		return original;
 	}
 	
 }

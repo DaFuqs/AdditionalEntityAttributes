@@ -5,12 +5,14 @@ import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin {
 
-	@ModifyReturnValue(method = "createAttributes", require = 1, allow = 1, at = @At("RETURN"))
+	@Unique
+    @ModifyReturnValue(method = "createAttributes", require = 1, allow = 1, at = @At("RETURN"))
 	private static AttributeSupplier.Builder additionalEntityAttributes$addPlayerAttributes(AttributeSupplier.Builder original) {
 		return original
 			.add(AdditionalEntityAttributes.WATER_VISIBILITY)

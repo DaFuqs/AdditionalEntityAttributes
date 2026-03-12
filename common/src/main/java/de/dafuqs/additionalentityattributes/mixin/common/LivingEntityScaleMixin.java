@@ -22,7 +22,7 @@ public abstract class LivingEntityScaleMixin {
     private double additionalEntityAttributes$previousHitboxWidth;
     @Unique
     private double additionalEntityAttributes$previousHitboxHeight;
-//
+
     @Inject(method = "onAttributeUpdated", at = @At(value = "TAIL"))
     private void additionalEntityAttributes$recalculateDimensions(CallbackInfo ci) {
         LivingEntity thisAsLiving = (LivingEntity)(Object)this;
