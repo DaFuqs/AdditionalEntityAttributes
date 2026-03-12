@@ -1,5 +1,6 @@
 package de.dafuqs.additionalentityattributes.mixin.common;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -21,15 +22,16 @@ public abstract class LootItemRandomChanceConditionMixin {
 	@Final
 	private NumberProvider chance;
 
-	@Inject(at = @At("RETURN"), method = "test(Lnet/minecraft/world/level/storage/loot/LootContext;)Z", cancellable = true)
-	public void additionalEntityAttributes$applyBonusLoot(LootContext lootContext, CallbackInfoReturnable<Boolean> cir) {
+	@ModifyReturnValue(at = @At("RETURN"), method = "test(Lnet/minecraft/world/level/storage/loot/LootContext;)Z")
+	public boolean additionalEntityAttributes$applyBonusLoot(boolean original, LootContext lootContext) {
 		// if the result was to not drop a drop before reroll
-		if (!cir.getReturnValue() && lootContext.getParamOrNull(LootContextParams.ATTACKING_ENTITY) instanceof LivingEntity livingEntity) {
+		if (!original && lootContext.getParamOrNull(LootContextParams.ATTACKING_ENTITY) instanceof LivingEntity livingEntity) {
 			AttributeInstance attributeInstance = livingEntity.getAttribute(AdditionalEntityAttributes.BONUS_RARE_LOOT_ROLLS);
 			if (attributeInstance != null) {
-				cir.setReturnValue(lootContext.getRandom().nextFloat() < this.chance.getFloat(lootContext) * (float) attributeInstance.getValue());
+				return lootContext.getRandom().nextFloat() < this.chance.getFloat(lootContext) * (float) attributeInstance.getValue();
 			}
 		}
+		return original;
 	}
 	
 }
