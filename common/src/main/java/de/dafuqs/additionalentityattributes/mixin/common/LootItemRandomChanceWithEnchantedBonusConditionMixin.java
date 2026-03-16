@@ -36,7 +36,9 @@ public abstract class LootItemRandomChanceWithEnchantedBonusConditionMixin {
 			AttributeInstance attributeInstance = livingEntity.getAttribute(AdditionalEntityAttributes.BONUS_RARE_LOOT_ROLLS);
 			if (attributeInstance != null) {
 				int level = EnchantmentHelper.getEnchantmentLevel(this.enchantment, livingEntity);
-				return lootContext.getRandom().nextFloat() < this.enchantedChance.calculate(level) * (float) attributeInstance.getValue();
+				if(level > 0) {
+					return lootContext.getRandom().nextFloat() < this.enchantedChance.calculate(level) * (float) attributeInstance.getValue();
+				}
 			}
 		}
 		return original;
