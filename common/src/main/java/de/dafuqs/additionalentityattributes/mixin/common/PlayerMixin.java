@@ -1,19 +1,20 @@
 package de.dafuqs.additionalentityattributes.mixin.common;
 
+import java.util.List;
+
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
 import de.dafuqs.additionalentityattributes.AdditionalEntityAttributesEntityTags;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
+
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
-
-import java.util.List;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin {
@@ -33,7 +34,7 @@ public abstract class PlayerMixin {
 	
 	// since we filter on an entity tag here, we cannot simply expand the original box
 	// and therefore have to run a second `getOtherEntities` check :(
-	@ModifyVariable(method = "aiStep", at = @At("STORE"))
+	@ModifyVariable(method = "aiStep", at = @At("STORE"), name = "entities")
 	private List<Entity> additionalEntityAttributes$adjustCollectionRange(List<Entity> original) {
         Player thisPlayer = (Player)(Object) this;
 		AttributeInstance instance = thisPlayer.getAttribute(AdditionalEntityAttributes.COLLECTION_RANGE);
@@ -48,7 +49,7 @@ public abstract class PlayerMixin {
 			
 			original.addAll(thisPlayer.level().getEntities(thisPlayer, expandedBox, entity -> {
 				EntityType<?> type = entity.getType();
-				return type.is(AdditionalEntityAttributesEntityTags.AFFECTED_BY_COLLECTION_RANGE) && !original.contains(entity);
+				return type.builtInRegistryHolder().is(AdditionalEntityAttributesEntityTags.AFFECTED_BY_COLLECTION_RANGE) && !original.contains(entity);
 			}));
 		}
 		return original;
