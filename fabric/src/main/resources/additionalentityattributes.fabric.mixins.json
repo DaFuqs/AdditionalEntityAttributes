@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "package": "de.dafuqs.additionalentityattributes.mixin.fabric",
   "refmap": "additionalentityattributes.refmap.json",
-  "compatibilityLevel": "JAVA_21",
+  "compatibilityLevel": "JAVA_25",
   "mixins": [
     "LivingEntityMixin",
     "PlayerMixin"

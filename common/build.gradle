@@ -10,10 +10,6 @@ neoForge {
     if (at.exists()) {
         setAccessTransformers(at)
     }
-    parchment {
-        minecraftVersion = project.parchment_minecraft
-        mappingsVersion = project.parchment_version
-    }
 }
 
 dependencies {
