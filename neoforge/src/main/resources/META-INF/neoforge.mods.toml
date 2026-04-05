@@ -1,6 +1,5 @@
-modLoader = "javafml"
-loaderVersion = "${neoforge_loader_version_range}"
 license = "MIT"
+issueTrackerURL = "https://github.com/DaFuqs/AdditionalEntityAttributes/issues"
 
 [[mods]]
 modId = "additionalentityattributes"
