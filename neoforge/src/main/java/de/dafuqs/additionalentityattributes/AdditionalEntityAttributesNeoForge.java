@@ -1,12 +1,14 @@
 package de.dafuqs.additionalentityattributes;
 
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
+
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
+import net.minecraft.world.entity.LivingEntity;
 
 @EventBusSubscriber(modid = AdditionalEntityAttributes.MOD_ID)
 public class AdditionalEntityAttributesNeoForge {
@@ -37,12 +39,12 @@ public class AdditionalEntityAttributesNeoForge {
             event.add(type, AdditionalEntityAttributes.MOB_DETECTION_RANGE);
             event.add(type, AdditionalEntityAttributes.MAGIC_PROTECTION);
         }
-        event.add(EntityType.PLAYER, AdditionalEntityAttributes.WATER_VISIBILITY);
-        event.add(EntityType.PLAYER, AdditionalEntityAttributes.LAVA_VISIBILITY);
-        event.add(EntityType.PLAYER, AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE);
-        event.add(EntityType.PLAYER, AdditionalEntityAttributes.BONUS_LOOT_COUNT_ROLLS);
-        event.add(EntityType.PLAYER, AdditionalEntityAttributes.BONUS_RARE_LOOT_ROLLS);
-        event.add(EntityType.PLAYER, AdditionalEntityAttributes.DROPPED_EXPERIENCE);
-        event.add(EntityType.PLAYER, AdditionalEntityAttributes.COLLECTION_RANGE);
+        event.add(EntityTypes.PLAYER, AdditionalEntityAttributes.WATER_VISIBILITY);
+        event.add(EntityTypes.PLAYER, AdditionalEntityAttributes.LAVA_VISIBILITY);
+        event.add(EntityTypes.PLAYER, AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE);
+        event.add(EntityTypes.PLAYER, AdditionalEntityAttributes.BONUS_LOOT_COUNT_ROLLS);
+        event.add(EntityTypes.PLAYER, AdditionalEntityAttributes.BONUS_RARE_LOOT_ROLLS);
+        event.add(EntityTypes.PLAYER, AdditionalEntityAttributes.DROPPED_EXPERIENCE);
+        event.add(EntityTypes.PLAYER, AdditionalEntityAttributes.COLLECTION_RANGE);
     }
 }
