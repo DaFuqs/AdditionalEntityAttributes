@@ -72,7 +72,6 @@ processResources {
     var expandProps = [
             'version'                           : version,
             'neoforge_version'                  : neoforge_version,
-            'neoforge_loader_version_range'     : neoforge_loader_version_range,
             'neoforge_minecraft_version_range'  : neoforge_minecraft_version_range,
             'neoforge_version_range'            : neoforge_version_range,
             'fabric_minecraft_version_range'    : fabric_minecraft_version_range
