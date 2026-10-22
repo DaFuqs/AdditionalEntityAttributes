@@ -37,5 +37,5 @@
   "attribute.name.additionalentityattributes.dropped_experience": "Увеличение опыта",
   "attribute.name.additionalentityattributes.dropped_experience.desc": "Увеличивает опыт, выпадающий с блоков и от убитых существ",
   "attribute.name.additionalentityattributes.collection_range": "Дальность сбора",
-  "attribute.name.additionalentityattributes.collection_range.desc": "Влияет на радиус, в котором вы собираете вещи вокруг себя",
+  "attribute.name.additionalentityattributes.collection_range.desc": "Влияет на радиус, в котором вы собираете вещи вокруг себя"
 }

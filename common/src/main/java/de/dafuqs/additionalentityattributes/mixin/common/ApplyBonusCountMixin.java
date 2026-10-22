@@ -34,8 +34,8 @@ public abstract class ApplyBonusCountMixin {
 	public int additionalEntityAttributes$applyBonusLoot(int original, ItemStack stack, LootContext context) {
 		// the bonus loot of this method gets rerolled x times
 		// and the highest result will be returned
-		ItemInstance itemStack = context.getOptionalParameter(LootContextParams.TOOL);
-		Entity entity = context.getOptionalParameter(LootContextParams.THIS_ENTITY);
+		ItemInstance itemStack = context.getOptional(LootContextParams.TOOL);
+		Entity entity = context.getOptional(LootContextParams.THIS_ENTITY);
 		if (itemStack != null && entity instanceof LivingEntity livingEntity) {
 			int enchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(this.enchantment, itemStack);
 			if (enchantmentLevel > 0) {

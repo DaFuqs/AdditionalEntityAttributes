@@ -3,7 +3,6 @@ package de.dafuqs.additionalentityattributes.mixin.common;
 import java.lang.ref.WeakReference;
 
 import de.dafuqs.additionalentityattributes.Support;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,9 +11,10 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -26,7 +26,7 @@ public abstract class BlockMixin {
 	private WeakReference<Player> additionalEntityAttributes$breakingPlayer;
 
 	@Inject(method = "playerDestroy", at = @At("HEAD"))
-	public void additionalEntityAttributes$saveBreakingPlayer(Level level, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack, CallbackInfo callbackInfo) {
+	public void additionalEntityAttributes$saveBreakingPlayer(ServerLevel level, ServerPlayer player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack destroyedWith, CallbackInfo ci) {
 		additionalEntityAttributes$breakingPlayer = new WeakReference<>(player);
 	}
 	
