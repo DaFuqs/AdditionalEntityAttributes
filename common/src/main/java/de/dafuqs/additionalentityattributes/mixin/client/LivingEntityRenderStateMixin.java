@@ -1,17 +1,19 @@
 package de.dafuqs.additionalentityattributes.mixin.client;
 
+import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
 import de.dafuqs.additionalentityattributes.CustomValueRenderState;
-import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
+
 @Mixin(LivingEntityRenderState.class)
 public class LivingEntityRenderStateMixin implements CustomValueRenderState {
-    @Unique private double aea$entityWidth;
-    @Unique private double aea$entityHeight;
-    @Unique private double aea$modelScale;
-    @Unique private double aea$modelWidth;
-    @Unique private double aea$modelHeight;
+    @Unique private double aea$entityWidth = AdditionalEntityAttributes.WIDTH.value().getDefaultValue();
+    @Unique private double aea$entityHeight = AdditionalEntityAttributes.HEIGHT.value().getDefaultValue();
+    @Unique private double aea$modelScale = AdditionalEntityAttributes.MODEL_SCALE.value().getDefaultValue();
+    @Unique private double aea$modelWidth = AdditionalEntityAttributes.MODEL_WIDTH.value().getDefaultValue();
+    @Unique private double aea$modelHeight = AdditionalEntityAttributes.MODEL_HEIGHT.value().getDefaultValue();
 
     @Override
     public double aea$getEntityWidth() {
